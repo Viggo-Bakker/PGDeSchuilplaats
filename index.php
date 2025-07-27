@@ -7,32 +7,10 @@
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <header>
-<!--
-    <div class="top-bar">
-      <span>@ pgsdeschuilplaats.nl</span>
-      <span class="socials">📘 🐦 📷</span>
-    </div>
--->
-    <div class="logo-bar">
-      <img src="afbeeldingen/logo.png" alt="De Schuilplaats logo" class="logo" />
-      <nav>
-        <ul>
-          <li><a href="#">Agenda</a></li>
-          <li><a href="#">Over ons</a></li>
-          <li><a href="#">Diensten</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Doneren</a></li>
-          <li>
-            <div class="search-bar">
-            <input type="text" placeholder="Zoek..." />
-            <button>Zoek</button>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  
+  <?php
+     include 'menu.html';
+  ?>
 
   <section class="hero">
     <div class="overlay">
