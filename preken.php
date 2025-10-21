@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Preken</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
     <?php
      include 'menu.html';
     ?>
 
-    <p>test</p>
+    <h1>Preken<h1>
 </body>
 </html>

@@ -1,60 +1,71 @@
 <!DOCTYPE html>
 <html>
 <meta charset='UTF-8'>
-<link rel='stylesheet' href='menu.css'>
+<link rel='stylesheet' href='css/menu.css'>
 
 <header>
-    <nav id='menu'>
-        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'>
-        <ul class='logo'>
-            <li>
-                <a href='index.php' class='logo'>
-                    <img src="afbeeldingen/logo.png" alt="De Schuilplaats logo" class="logo" />
-                </a>
-            </li>
+  <script>
+    window.addEventListener("scroll", function () {
+      const menu = document.getElementById("menu");
+      if (window.scrollY > 50) {
+        menu.classList.add("scrolled");
+      } else {
+        menu.classList.remove("scrolled");
+      }
+    });
+  </script>
+
+  <nav id='menu'>
+    <!-- <input type='checkbox' id='responsive-menu' onclick='updatemenu()'> -->
+    <ul class='logo'>
+      <li>
+        <a href='index.php' class='logo'>
+          <img src="images/new-logo.png" alt="De Schuilplaats logo" class="logo" />
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li><a class='dropdown-arrow' href='#'>Agenda</a>
+        <ul class='sub-menus'>
+          <li><a href='#'>- Diensten</a></li>
+          <li><a href='#'>- Ouderen</a></li>
+          <li><a href='#'>- Alpha</a></li>
+          <li><a href='#'>- Kringen</a></li>
+          <li><a href='#'>- Bidstond</a></li>
         </ul>
-        <ul>
-            <li><a class='dropdown-arrow' href='#'>Agenda</a>
-            <ul class='sub-menus'>
-                <li><a href='#'>- Diensten</a></li>
-                <li><a href='#'>- Ouderen</a></li>
-                <li><a href='#'>- Alpha</a></li>
-                <li><a href='#'>- Kringen</a></li>
-                <li><a href='#'>- Bidstond</a></li>
-            </ul>
-            </li>
-            <li><a class='dropdown-arrow' href='#'>Over ons</a>
-            <ul class='sub-menus'>
-                <li><a href='#'>- Stuurgroep</a></li>
-                <li><a href='#'>- Geschiedenis</a></li>
-                <li><a href='#'>- Route</a></li>
-            </ul>
-            </li>
-            <li><a class='dropdown-arrow' href='#'>Onderwijs</a>
-            <ul class='sub-menus'>
-                <li><a href='preken.php'>- Preken</a></li>
-                <li><a href='#'>- Kinderen</a></li>
-                <li><a href='#'>- Tieners</a></li>
-                <li><a href='#'>- Jeugd</a></li>
-            </ul>
-            </li>
-            <li><a class='dropdown-arrow' href='#'>Contact</a>
-            <ul class='sub-menus'>
-                <li><a href='#'>- Privacy statement</a></li>
-                <li><a href='#'>- Protocollen</a></li>
-                <li><a href='#'>- ANBI</a></li>
-            </ul>
-            </li>
-            <li><a href='#'>Doneren</a></li>
-        </ul>   
-        <form class="search-bar">
-            <input type="text" name="search" placeholder="Zoek..."/>
-            <button type="submit">Zoek</button>
-        </form>
-    </nav>
+      </li>
+      <li><a class='dropdown-arrow' href='#'>Over ons</a>
+        <ul class='sub-menus'>
+          <li><a href='#'>- Stuurgroep</a></li>
+          <li><a href='#'>- Geschiedenis</a></li>
+          <li><a href='#'>- Route</a></li>
+        </ul>
+      </li>
+      <li><a class='dropdown-arrow' href='#'>Onderwijs</a>
+        <ul class='sub-menus'>
+          <li><a href='preken.php'>- Preken</a></li>
+          <li><a href='#'>- Kinderen</a></li>
+          <li><a href='#'>- Tieners</a></li>
+          <li><a href='#'>- Jeugd</a></li>
+        </ul>
+      </li>
+      <li><a class='dropdown-arrow' href='contact.php'>Contact</a>
+        <ul class='sub-menus'>
+          <li><a href='#'>- Privacy statement</a></li>
+          <li><a href='#'>- Protocollen</a></li>
+          <li><a href='#'>- ANBI</a></li>
+        </ul>
+      </li>
+      <li><a href='#'>Doneren</a></li>
+    </ul>
+    <form class="search-bar">
+      <input type="text" name="search" placeholder="Zoek...">
+      <button type="submit">Zoek</button>
+    </form>
+  </nav>
 
 
-<!--
+  <!--
     <div class="logo-bar">
       <img src="afbeeldingen/logo.png" alt="De Schuilplaats logo" class="logo" />
       <nav>
@@ -103,5 +114,6 @@
 -->
 
 
- </header>
+</header>
+
 </html>

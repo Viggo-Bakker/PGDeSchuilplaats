@@ -1,10 +1,21 @@
 #menu {
-	background: #FFFFFF;
+	/* background-color: rgba(255, 255, 255, 0.396); */
+	background: linear-gradient(to right, #ffffff, #ffc461);
+	transition: opacity 0.3s ease;
+	opacity: 0.4;
 	height: 90px;
 	padding-right: 18px;
-	border-radius: 10px;
     display: flex;
+	z-index: 9999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 }
+#menu.scrolled {
+	opacity: 1;
+}
+
 #menu ul, #menu li {
 	margin: 0 auto;
 	padding: 0;
@@ -12,10 +23,10 @@
 }
 #menu ul.logo {
     text-align: left;
-    padding: 5px;
+	max-width: fit-content;
 }
 .logo {
-    height: 80px;
+    height: 90px;
 }
 #menu ul {
 	width: 100%;
@@ -32,17 +43,22 @@
 	padding: 0 14px;
 	text-decoration: none;
 	color: #000000;
-	font-size: 18px;
+	font-size: 1.25rem;
 }
 #menu a.dropdown-arrow:after {
 	content: "\23F7";
 	margin-left: 5px;
 }
 #menu li a:hover {
-	color: #51A8C8;
-	background: #F2F2F2;
+	color: white;
+	background: #234;
 }
-#menu input {
+#menu .logo li a:hover {
+	background: none;
+	/* border: 2px solid black; */
+	box-shadow: 1px 1px 10px black;
+}
+/* #menu input#responsive-menu {
 	display: none;
 	margin: 0;
 	padding: 0;
@@ -50,7 +66,7 @@
 	width: 100%;
 	opacity: 0;
 	cursor: pointer
-}
+} 
 #menu label {
 	display: none;
 	line-height: 50px;
@@ -63,12 +79,12 @@
 	color: #000000;
 	content: "\2261"; 
 	margin-left: 20px;
-}
+} */
 #menu ul.sub-menus{
 	height: auto;
 	overflow: hidden;
 	width: 170px;
-	background: #51A8C8;
+	background: #234;
 	position: absolute;
 	z-index: 99;
 	display: none;
@@ -80,7 +96,7 @@
     height: 30px;
 }
 #menu ul.sub-menus a {
-	color: #FFFFFF;
+	color: white;
 	font-size: 14px;
 	text-transform: capitalize;
     line-height: 30px;
@@ -89,10 +105,10 @@
 	display: block;
 }
 #menu ul.sub-menus a:hover{
-	background: #51A8C8;
-	color: #FFFFFF;
+	background: #ffd690;
+	color: black;
 }
-.search-bar {
+form.search-bar {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -108,7 +124,7 @@
 }
 .search-bar button {
   padding: 8px 16px;
-  background: #123;
+  background: #234;
   color: white;
   border: none;
 }
@@ -128,3 +144,5 @@
 	#menu input:checked + label:before {content:"\00d7"}
 	#menu input:checked ~ ul {display:block}
 }
+
+
