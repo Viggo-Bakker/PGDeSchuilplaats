@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>De Schuilplaats</title>
   <link rel="stylesheet" href='css/styles.css'>
 </head>
+
 <body>
-  
+
   <?php
-     include 'menu.html';
+  include 'menu.html';
+  include 'dbconnect.php';
+  date_default_timezone_set('Europe/Amsterdam');
+
+   // helper: formatteer Y-m-d naar "Zo 19 okt"
+  function formatDutchDate(?string $date): string {
+    if (empty($date)) return '';
+    $dt = DateTime::createFromFormat('Y-m-d', $date) ?: new DateTime($date);
+    $weekdays = ['Zo','Ma','Di','Wo','Do','Vr','Za'];
+    $months = [1=>'jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+    $weekday = $weekdays[(int)$dt->format('w')];
+    $day = $dt->format('j');
+    $month = $months[(int)$dt->format('n')];
+    return $weekday . ' ' . $day . ' ' . $month;
+  }
   ?>
 
   <header class="hero">
@@ -19,51 +35,53 @@
     </div>
   </header>
 
-<main>
+  <main>
     <section id="about-us">
       <h2>Deepen your relationship with God <i>and your family</i></h2>
       <div id="text-background">
-        <p>Pinkstergemeente De Schuilplaats is een warme en gastvrije gemeenschap waar iedereen welkom is. Wij geloven in de kracht van liefde, geloof en hoop, en streven ernaar om deze waarden in ons dagelijks leven te integreren.</p>
+        <p>Openbaring 1:7 <br> Zie, Hij komt met de wolken, en elk oog zal Hem zien, ook zij die hem doorstoken hebben. En alle stammen van de aarde zullen rouw over Hem bedrijven. Ja, amen.</p>
       </div>
     </section>
 
     <section id="services">
       <h3>Aankomende Diensten</h3>
       <div>
-        <div class="service">
-          <h4>zo 19 okt</h4>
-          <p>10:00: Paul Bos | OvD: Tineke</p>
-        </div>
-        <div class="service">
-          <h4>zo 26 okt</h4>
-          <p>10:00: Tineke | OvD: Charles Petit</p>
-        </div>
-        <div class="service">
-          <h4>zo 02 nov</h4>
-          <p>10:00: Medhat Mouri | OvD: Jaime Quevedo Klein Haneveld</p>
-        </div>
-        <div class="service">
-          <h4>zo 19 okt</h4>
-          <p>10:00: Theo | OvD: Willem-Peter</p>
-        </div>
+        <?php 
+        try {
+          $query_show_services = "SELECT date, special_occasion, time, speaker, elder FROM services WHERE DATE(date) >= '" . date("Y-m-d") . "' ORDER BY date ASC LIMIT 4";
+          $result = $db->query($query_show_services)->fetchAll(PDO::FETCH_ASSOC);
+          foreach ($result as $row) {
+            echo '<div class="service">';
+            echo '<h4>' . htmlspecialchars(formatDutchDate($row['date'])) . '</h4>';
+            echo '<p>' . htmlspecialchars($row['special_occasion']) . '</p>';
+            echo '<p>' . htmlspecialchars(date("H:i", strtotime($row['time']))) . ' | ' . htmlspecialchars($row['speaker']) . ' | OvD: ' . htmlspecialchars($row['elder']) . '</p>';
+            echo '</div>';
+          }
+        } catch (PDOException $e) {
+          echo "Fout bij ophalen diensten: " . $e->getMessage();
+        }
+        ?>
       </div>
     </section>
 
     <section id="sermons">
       <h3>Recent Preken</h3>
       <div>
-        <div class="sermon">
-          <p>12-10-2025 | Ben Schot | Geen verloren zaken</p>
-          <audio controls="" preload="metadata" name="media"><source src="https://pgdeschuilplaats.nl/leden/2025-10-12.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="sermon">
-          <p>5-10-2025 | Willem-peter | Israël en de gemeente</p>
-          <audio controls="" preload="metadata" name="media"><source src="https://pgdeschuilplaats.nl/leden/2025-10-05.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="sermon">
-          <p>28-9-2025 | Jaime Quevedo Klein Haneveld | Smetvrees</p>
-          <audio controls="" preload="metadata" name="media"><source src="https://pgdeschuilplaats.nl/leden/2025-9-28.mp3" type="audio/mpeg"></audio>
-        </div>
+          <?php
+          try {
+            $query_show_sermons = "SELECT date, name, title, file FROM sermons ORDER BY date DESC LIMIT 3";
+            $result =  $db->query($query_show_sermons)->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($result as $row) {
+              echo '<div class="sermon">';
+              echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
+              echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
+              echo '</div>';
+            }
+          } catch (PDOException $e) {
+            echo "Fout bij ophalen preken: " . $e->getMessage();
+          }
+          $db = null;
+          ?>
       </div>
     </section>
 
@@ -71,44 +89,51 @@
       <h3>Activiteiten</h3>
       <div>
 
-      <a href="#"><div class="activity">
-          <div class="image-container">
-            <img src="images/diensten.jpg" alt="Eredienst">
+        <a href="#">
+          <div class="activity">
+            <div class="image-container">
+              <img src="images/diensten.jpg" alt="Eredienst">
+            </div>
+            <div class="text-container">
+              <h4>Eredienst</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+            </div>
           </div>
-          <div class="text-container">
-            <h4>Eredienst</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
-          </div>
-        </div></a>
+        </a>
 
-        <a href="#"><div class="activity">
-          <div class="image-container">
-            <img src="images/prayer.jpg" alt="Bidstond">
+        <a href="#">
+          <div class="activity">
+            <div class="image-container">
+              <img src="images/prayer.jpg" alt="Bidstond">
+            </div>
+            <div class="text-container">
+              <h4>Bidstond</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+            </div>
           </div>
-          <div class="text-container">
-            <h4>Bidstond</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
-          </div>
-        </div></a>
+        </a>
 
-        <a href="#"><div class="activity">
-          <div class="image-container">
-            <img src="images/jeugd.jpg" alt="Jeugdgroep">
+        <a href="#">
+          <div class="activity">
+            <div class="image-container">
+              <img src="images/jeugd.jpg" alt="Jeugdgroep">
+            </div>
+            <div class="text-container">
+              <h4>Jeugdgroep</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+            </div>
           </div>
-          <div class="text-container">
-            <h4>Jeugdgroep</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
-          </div>
-        </div></a>
+        </a>
 
       </div>
     </section>
-</main>
+  </main>
 
-<footer>
-  <a href="#">Schuilplaats</a> 
-  <a href="#">06-12345678</a>
-  <a href="#">info@deschuilplaats.nl</a>
-</footer>
+  <footer>
+    <a href="#">Schuilplaats</a>
+    <a href="#">06-12345678</a>
+    <a href="#">info@deschuilplaats.nl</a>
+  </footer>
 </body>
+
 </html>

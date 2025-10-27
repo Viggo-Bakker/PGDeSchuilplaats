@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: normal;
+}
+
+
+/* ------- HEADER ------- */
+header#sermon {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    justify-self: flex-start;
+    text-align: center;
+}
+
+
+/* ------- MAIN ------- */
+main {
+    flex: 1;
+    padding: 0 20px;
+    padding-bottom: 40px;
+}
+
+/* UPLOAD FORM */
+h2 {
+    margin-bottom: 20px;
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    pointer-events: auto;
+}
+
+input[type="text"],
+input[type="date"] {
+    padding: 5px;
+}
+
+.form-group input#sermon-audio {
+    width: fit-content;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #456;
+    color: white;
+    box-shadow: none;
+}
+
+
+/* overview services */
+h3 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+#services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh 0;
+    margin: 100px auto;
+}
+
+#services-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 800px;
+    overflow-y: auto;
+    width: fit-content;
+}
+
+.service {
+    width: 50vw;
+    font-size: 1.5rem;
+    border-bottom: 4px dotted black;
+    padding: 30px 10px;
+}
+
+.service p {
+    padding-left: 50px;
+}
+
+
+/* ------- FOOTER ------- */
+footer {
+    background: #234;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

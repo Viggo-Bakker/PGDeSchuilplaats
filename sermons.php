@@ -13,33 +13,19 @@
   include 'menu.html';
   include 'dbconnect.php';
 
-  $sermon_date = '';
-  $speaker_name = '';
-  $sermon_title = '';
-  $sermon_audio = null;
-
-  // Na include/headers: detecteer wanneer POST leeg is door overschrijding van post_max_size
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Als POST & FILES leeg zijn maar CONTENT_LENGTH aanwezig is, is waarschijnlijk post_max_size overschreden
-    if (empty($_POST) && empty($_FILES) && !empty($_SERVER['CONTENT_LENGTH'])) {
-      echo '<p style="color:red;">Upload mislukt: bestand is groter dan de serverlimiet. Vergroot upload_max_filesize / post_max_size in php.ini.</p>';
-    } else {
-      // je bestaande formulierverwerking hier...
-      if (isset($_POST['send'])) {
-        $sermon_date = $_POST['sermon_date'];
-        $speaker_name = $_POST['speaker_name'];
-        $sermon_title = $_POST['sermon_title'];
-        $sermon_audio = $_FILES['sermon_audio'];
-
-        echo "Het formulier is verzonden!";
-      } else {
-        $sermon_date = '';
-        $speaker_name = '';
-        $sermon_title = '';
-        $sermon_audio = null;
-      }
+   try {       //DELETE!!!!!!
+        if (isset($_GET['id'])) {
+            $query_delete = $db->prepare("DELETE FROM sermons WHERE id = :id");
+            $query_delete->bindParam("id", $_GET['id']);
+            if ($query_delete->execute()) {
+                echo "De preek is verwijderd!";
+            } else {
+                echo "Er is een fout opgetreden!";
+            }
+        }
+    } catch (PDOException $e) {
+        die("Error!: " . $e->getMessage());
     }
-  }
   ?>
 
   <header id="sermon">
@@ -50,31 +36,28 @@
   </header>
 
   <main>
-    <section id="upload-form">
-      <h2>Upload een Preek</h2>
-      <form action="" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="sermon-date">Datum:</label>
-          <input type="date" id="sermon-date" name="sermon_date" required value="<?php echo htmlspecialchars($sermon_date, ENT_QUOTES); ?>">
-        </div>
-
-        <div class="form-group">
-          <label for="speaker-name">Spreker:</label>
-          <input type="text" id="speaker-name" name="speaker_name" required value="<?php echo htmlspecialchars($speaker_name, ENT_QUOTES); ?>">
-        </div>
-
-        <div class="form-group">
-          <label for="sermon-title">Titel:</label>
-          <input type="text" id="sermon-title" name="sermon_title" required value="<?php echo htmlspecialchars($sermon_title, ENT_QUOTES); ?>">
-        </div>
-
-        <div class="form-group">
-          <span class="file-label">Audio bestand:</span>
-          <input type="file" id="sermon-audio" name="sermon_audio" accept="audio/*" required>
-        </div>
-
-        <button type="submit" name="send" value="Upload Preek">Versturen</button>
-      </form>
+    <section id="sermons">
+      <h2>Recente Preken</h2>
+      <div>
+        <?php
+        try {
+          $query_show = "SELECT * FROM sermons ORDER BY date DESC LIMIT 10";
+          $result =  $db->query($query_show)->fetchAll(PDO::FETCH_ASSOC);
+          foreach ($result as $row) {
+            echo '<div class="sermon">';
+            echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
+            echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
+            echo '<div><a href="update_sermon.php?id=' . $row['id'] . '">Bewerk</a>';           //UPDATE LINK
+            echo ' | ';
+            echo '<a href="sermons.php?id=' . $row['id'] . '" class="delete-link">Verwijder</a></div>';        //DELETE LINK
+            echo '</div>';
+          }
+        } catch (PDOException $e) {
+          echo "Fout bij ophalen preken: " . $e->getMessage();
+        }
+        $db = null;
+        ?>
+      </div>
     </section>
   </main>
 
@@ -83,6 +66,19 @@
     <a href="#">06-12345678</a>
     <a href="#">info@deschuilplaats.nl</a>
   </footer>
+
+
+  <script>    //conform delete
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('a.delete-link').forEach(function (link) {
+          link.addEventListener('click', function (e) {
+            if (!confirm('Weet je zeker dat je deze dienst wilt verwijderen? Deze actie kan niet ongedaan gemaakt worden.')) {
+              e.preventDefault();
+            }
+          });
+        });
+      });
+    </script>
 </body>
 
 </html>

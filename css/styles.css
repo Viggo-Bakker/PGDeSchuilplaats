@@ -10,12 +10,16 @@
 body {
   font-family: sans-serif;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Times New Roman MT', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: normal;
 }
 
@@ -54,29 +58,20 @@ header p {
 
 /* ---------MAIN--------- */
 
-/* main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 5vh;
-  padding: 5vh 0;
+main {
+  flex: 1;
+
 }
-
-main p {
-  line-height: 1.5rem;
-  font-size: 1.3rem;
-} */
-
 
 /* ABOUT US */
 #about-us {
-  background-image: linear-gradient(to bottom, black, white 100%);
+  background: linear-gradient(to bottom, black, white 100%);
   height: 90vh;
   display: flex;
   justify-content: space-between;
   color: white;
   padding: 15vh 15vw;
+  text-shadow: 1px 1px 2px black;
 }
 
 #about-us h2 {
@@ -87,7 +82,7 @@ main p {
 
 #text-background {
   align-self: flex-end;
-  background: rgba(17, 34, 51, 0.6);
+  margin-bottom: 8vh;
   border-radius: 50px;
   height: auto;
   width: fit-content;
@@ -95,6 +90,7 @@ main p {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #text-background p {
@@ -110,7 +106,7 @@ main p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5vh 0;
+  padding: 10vh 0;
 }
 
 .service {
@@ -127,8 +123,9 @@ main p {
 
 /* SERMONS */
 #sermons {
-  background: #f4f4f4;
-  padding: 5vh 0;
+  /* background: linear-gradient(to bottom, white, #b5c9d5 100%); */
+  background-color: #f1f1f1;
+  padding: 10vh 0;
 }
 
 #sermons h3 {
@@ -138,7 +135,7 @@ main p {
 #sermons>div {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 40px;
 }
@@ -162,12 +159,29 @@ audio {
 
 
 /* ACTIVITIES */
+#activities::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, #f1f1f1 0%, rgba(255,255,255,0) 100%);
+}
+
 #activities {
-  padding: 5vh 0;
+  padding: 10vh 0;
+  position: relative;
+  background-image: url('background-images/lake-and-mountain.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  backdrop-filter: blur(5px);
 }
 
 #activities h3 {
-  margin-bottom: 40px;
+  margin-bottom: 5vh;
+  color: black;
+  text-shadow: 1px 1px 2px white;
 }
 
 #activities > div {
@@ -175,6 +189,7 @@ audio {
   justify-content: center;
   align-items: center;
   gap: 30px;
+  
 }
 
 .activity {
@@ -185,6 +200,9 @@ audio {
   border: 2px solid black;
   border-radius: 15px;
   overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* WebKit */
 }
 
 .image-container {
@@ -208,7 +226,7 @@ audio {
 }
 
 #activities a:hover {
-  box-shadow: 0 0 10px #000000a8;
+  box-shadow: 0 0 20px white;
   transform: scale(1.05);
 }
 
