@@ -1,33 +1,28 @@
+<?php
+session_start();
+
+include 'dbconnect.php';
+include 'functions.php';
+
+$user_data = check_login($db, false);
+
+include 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>De Schuilplaats</title>
+  <META NAME="keywords" CONTENT="kerk, pinkster, pinkstergemeente, gemeente, spijkenisse, hekelingen, schuilplaats, nissewaard">
+  <META NAME="description" CONTENT="Website van pinkstergemeente De Schuilplaats in Hekelingen (Spijkenisse)">
+  <title>PG De Schuilplaats</title>
   <link rel="stylesheet" href='css/styles.css'>
 </head>
 
 <body>
-
-  <?php
-  include 'menu.html';
-  include 'dbconnect.php';
-  date_default_timezone_set('Europe/Amsterdam');
-
-   // helper: formatteer Y-m-d naar "Zo 19 okt"
-  function formatDutchDate(?string $date): string {
-    if (empty($date)) return '';
-    $dt = DateTime::createFromFormat('Y-m-d', $date) ?: new DateTime($date);
-    $weekdays = ['Zo','Ma','Di','Wo','Do','Vr','Za'];
-    $months = [1=>'jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
-    $weekday = $weekdays[(int)$dt->format('w')];
-    $day = $dt->format('j');
-    $month = $months[(int)$dt->format('n')];
-    return $weekday . ' ' . $day . ' ' . $month;
-  }
-  ?>
-
   <header class="hero">
     <div class="overlay">
       <h1>Welkom bij Pinkstergemeente<br>De Schuilplaats</h1>
@@ -46,7 +41,7 @@
     <section id="services">
       <h3>Aankomende Diensten</h3>
       <div>
-        <?php 
+        <?php
         try {
           $query_show_services = "SELECT date, special_occasion, time, speaker, elder FROM services WHERE DATE(date) >= '" . date("Y-m-d") . "' ORDER BY date ASC LIMIT 4";
           $result = $db->query($query_show_services)->fetchAll(PDO::FETCH_ASSOC);
@@ -67,21 +62,21 @@
     <section id="sermons">
       <h3>Recent Preken</h3>
       <div>
-          <?php
-          try {
-            $query_show_sermons = "SELECT date, name, title, file FROM sermons ORDER BY date DESC LIMIT 3";
-            $result =  $db->query($query_show_sermons)->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($result as $row) {
-              echo '<div class="sermon">';
-              echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
-              echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
-              echo '</div>';
-            }
-          } catch (PDOException $e) {
-            echo "Fout bij ophalen preken: " . $e->getMessage();
+        <?php
+        try {
+          $query_show_sermons = "SELECT date, name, title, file FROM sermons ORDER BY date DESC LIMIT 3";
+          $result =  $db->query($query_show_sermons)->fetchAll(PDO::FETCH_ASSOC);
+          foreach ($result as $row) {
+            echo '<div class="sermon">';
+            echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
+            echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
+            echo '</div>';
           }
-          $db = null;
-          ?>
+        } catch (PDOException $e) {
+          echo "Fout bij ophalen preken: " . $e->getMessage();
+        }
+        $db = null;
+        ?>
       </div>
     </section>
 

@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+include 'dbconnect.php';
+include 'functions.php';
+
+$user_data = check_login($db, false);
+
+include 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -10,9 +22,6 @@
 
 <body>
   <?php
-  include 'menu.html';
-  include 'dbconnect.php';
-
    try {       //DELETE!!!!!!
         if (isset($_GET['id'])) {
             $query_delete = $db->prepare("DELETE FROM sermons WHERE id = :id");
@@ -47,9 +56,12 @@
             echo '<div class="sermon">';
             echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
             echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
-            echo '<div><a href="update_sermon.php?id=' . $row['id'] . '">Bewerk</a>';           //UPDATE LINK
-            echo ' | ';
-            echo '<a href="sermons.php?id=' . $row['id'] . '" class="delete-link">Verwijder</a></div>';        //DELETE LINK
+            if(isset($user_data))   //SHOW EDIT/DELETE LINKS IF LOGGED IN
+            {
+                echo '<div><a href="update_sermon.php?id=' . $row['id'] . '">Bewerk</a>';           //UPDATE LINK
+                echo ' | ';
+                echo '<a href="sermons.php?id=' . $row['id'] . '" class="delete-link">Verwijder</a></div>';        //DELETE LINK
+            }
             echo '</div>';
           }
         } catch (PDOException $e) {

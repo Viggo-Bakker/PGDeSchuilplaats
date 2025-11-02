@@ -25,12 +25,14 @@
       </li>
     </ul>
     <ul>
+      <?php if (isset($user_data['user_name'])): ?>
       <li><a class='dropdown-arrow' href='#'>Admin</a>
         <ul class='sub-menus'>
           <li><a href='admin_services.php'>- Diensten</a></li>
           <li><a href='admin_sermons.php'>- Preken</a></li>
         </ul>
       </li>
+      <?php endif; ?>
       <li><a class='dropdown-arrow' href='#'>Agenda</a>
         <ul class='sub-menus'>
           <li><a href='#'>- Diensten</a></li>
@@ -64,11 +66,19 @@
       </li>
       <li><a href='#'>Doneren</a></li>
     </ul>
+    <div id="right">
+      <?php if (isset($user_data['user_name'])): ?>
+        <p id="user-greeting"> Ingelogd als; <?php echo $user_data['user_name']; ?>! <a href="logout.php">Uitloggen</a></p>
+      <?php else: ?> 
+        <p id="user-greeting"><a href="login.php" class="login-button">Inloggen</a></p>
+      <?php endif; ?>
+
     <form class="search-bar">
       <input type="text" name="search" placeholder="Zoek...">
       <button type="submit">Zoek</button>
     </form>
-  </nav>
+  </div>  
+</nav>
 
 
   <!--

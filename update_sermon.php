@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+include 'dbconnect.php';
+include 'functions.php';
+
+$user_data = check_login($db, false);
+
+include 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -10,8 +22,6 @@
 
 <body>
     <?php
-    include 'dbconnect.php';
-
     try {
         // Als POST & FILES leeg zijn maar CONTENT_LENGTH aanwezig is, is waarschijnlijk post_max_size overschreden
         if (empty($_POST) && empty($_FILES) && !empty($_SERVER['CONTENT_LENGTH'])) {
@@ -80,8 +90,6 @@
     } catch (PDOException $e) {
         die("Error!: " . $e->getMessage());
     }
-
-    include 'menu.html';
     ?>
     <main>
         <section id="upload-form" style="margin-top: 100px;">

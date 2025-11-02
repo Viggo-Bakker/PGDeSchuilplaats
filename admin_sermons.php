@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+include 'dbconnect.php';
+include 'functions.php';
+
+
+$user_data = check_login($db, true);
+
+
+include 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,9 +24,6 @@
 
 <body>
     <?php
-    include 'menu.html';
-    include 'dbconnect.php';
-
     $sermon_date = '';
     $speaker_name = '';
     $sermon_title = '';

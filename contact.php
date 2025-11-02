@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+include 'dbconnect.php';
+include 'functions.php';
+
+$user_data = check_login($db, false);
+
+include 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +19,6 @@
     <link href='styles.css' rel="stylesheet">
 </head>
 <body>
-    <?php 
-    include "menu.html";
-    ?>
 
     <main>
         <div class="center-container">

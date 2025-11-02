@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+include 'dbconnect.php';
+include 'functions.php';
+
+$user_data = check_login($db, false);
+
+include 'menu.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -10,8 +22,6 @@
 
 <body>
     <?php
-    include 'dbconnect.php';
-
     try {
         if (isset($_POST['send'])) {
             $service_date = $_POST['service_date'] ?? null;
@@ -56,8 +66,6 @@
     } catch (PDOException $e) {
         die("Error!: " . $e->getMessage());
     }
-
-    include 'menu.html';
     ?>
     <main>
         <section id="upload-form" style="margin-top: 100px;">

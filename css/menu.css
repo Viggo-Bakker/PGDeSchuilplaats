@@ -4,41 +4,49 @@
 	opacity: 0.4;
 	height: 90px;
 	padding-right: 18px;
-    display: flex;
+	display: flex;
 	z-index: 9999;
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 }
+
 #menu:hover {
 	opacity: 1;
 }
+
 #menu.scrolled {
 	opacity: 1;
 }
 
-#menu ul, #menu li {
+#menu ul,
+#menu li {
 	margin: 0 auto;
 	padding: 0;
 	list-style: none
 }
+
 #menu ul.logo {
-    text-align: left;
+	text-align: left;
 	max-width: fit-content;
 }
+
 .logo {
-    height: 90px;
+	height: 90px;
 }
+
 #menu ul {
 	width: 100%;
 	text-align: right;
-    margin-right: auto;
+	margin-right: auto;
 }
+
 #menu li {
 	display: inline-block;
 	position: relative;
 }
+
 #menu a {
 	display: block;
 	line-height: 90px;
@@ -47,42 +55,24 @@
 	color: #000000;
 	font-size: 1.25rem;
 }
+
 #menu a.dropdown-arrow:after {
 	content: "\23F7";
 	margin-left: 5px;
 }
+
 #menu li a:hover {
 	color: white;
 	background: #234;
 }
+
 #menu .logo li a:hover {
 	background: none;
 	/* border: 2px solid black; */
 	box-shadow: 1px 1px 10px black;
 }
-/* #menu input#responsive-menu {
-	display: none;
-	margin: 0;
-	padding: 0;
-	height: 50px;
-	width: 100%;
-	opacity: 0;
-	cursor: pointer
-} 
-#menu label {
-	display: none;
-	line-height: 50px;
-	text-align: center;
-	position: absolute;
-	left: 35px
-}
-#menu label:before {
-	font-size: 1.6em;
-	color: #000000;
-	content: "\2261"; 
-	margin-left: 20px;
-} */
-#menu ul.sub-menus{
+
+#menu ul.sub-menus {
 	height: auto;
 	overflow: hidden;
 	width: 170px;
@@ -91,60 +81,145 @@
 	z-index: 99;
 	display: none;
 }
+
 #menu ul.sub-menus li {
 	display: block;
 	text-align: left;
 	width: 100%;
-    height: 30px;
+	height: 30px;
 }
+
 #menu ul.sub-menus a {
 	color: white;
 	font-size: 14px;
 	text-transform: capitalize;
-    line-height: 30px;
+	line-height: 30px;
 }
+
 #menu li:hover ul.sub-menus {
 	display: block;
 }
-#menu ul.sub-menus a:hover{
+
+#menu ul.sub-menus a:hover {
 	background: #ffd690;
 	color: black;
 }
+
+div#right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	padding: 5px;
+}
+
+p#user-greeting {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: right;
+    color: inherit;
+}
+
+p#user-greeting a{
+	text-decoration: underline;
+	font-size: 0.8rem;
+	line-height: normal;
+	display: inline;
+	padding: 0px;
+}
+
+p#user-greeting a:hover{
+	color: #51A8C8;
+}
+
 form.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0 10px;
-  width: auto;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	padding: 0;
+	width: auto;
+
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
+
 .search-bar input {
-  flex: 1;
-  padding: 8px 10px;
-  font-size: 16px;
-  min-width: 200px;
-  border: 1px solid #123;
+	flex: 1;
+	padding: 8px 10px;
+	font-size: 16px;
+	min-width: 200px;
+	border: 1px solid #123;
 }
+
 .search-bar button {
-  padding: 8px 16px;
-  background: #234;
-  color: white;
-  border: none;
+	padding: 8px 16px;
+	background: #234;
+	color: white;
+	border: none;
 }
+
 .search-bar button:hover {
-    background: #51A8C8;
-    cursor: pointer;
-}
-@media screen and (max-width: 800px){
-	#menu {position:relative}
-	#menu ul {background:#51A8C8;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
-	#menu ul.sub-menus {width:100%;position:static;}
-	#menu ul.sub-menus a {padding-left:30px;}
-	#menu li {display:block;float:none;width:auto;}
-	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
-	#menu input {z-index:4}
-	#menu input:checked + label {color:#000000}
-	#menu input:checked + label:before {content:"\00d7"}
-	#menu input:checked ~ ul {display:block}
+	background: #51A8C8;
+	cursor: pointer;
 }
 
+@media screen and (max-width: 800px) {
+	#menu {
+		position: relative
+	}
 
+	#menu ul {
+		background: #51A8C8;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		left: 0;
+		z-index: 3;
+		height: auto;
+		display: none;
+		text-align: left;
+	}
+
+	#menu ul.sub-menus {
+		width: 100%;
+		position: static;
+	}
+
+	#menu ul.sub-menus a {
+		padding-left: 30px;
+	}
+
+	#menu li {
+		display: block;
+		float: none;
+		width: auto;
+	}
+
+	#menu input,
+	#menu label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block
+	}
+
+	#menu input {
+		z-index: 4
+	}
+
+	#menu input:checked+label {
+		color: #000000
+	}
+
+	#menu input:checked+label:before {
+		content: "\00d7"
+	}
+
+	#menu input:checked~ul {
+		display: block
+	}
+}
