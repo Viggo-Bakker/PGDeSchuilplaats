@@ -13,7 +13,7 @@
     return $weekday . ' ' . $day . ' ' . $month;
   }
 
-  function check_login($db, $redirect = true) {
+  function check_login($db, $redirect) {
     if(isset($_SESSION['user_id'])) {
       $id = $_SESSION['user_id'];
 

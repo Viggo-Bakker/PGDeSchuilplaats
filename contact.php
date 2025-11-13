@@ -95,5 +95,7 @@ include 'menu.php';
         </section>
         </div>
     </main>
+
+    <?php include 'footer.html'; ?>
 </body>
 </html>

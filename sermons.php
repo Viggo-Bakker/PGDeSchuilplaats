@@ -22,19 +22,19 @@ include 'menu.php';
 
 <body>
   <?php
-   try {       //DELETE!!!!!!
-        if (isset($_GET['id'])) {
-            $query_delete = $db->prepare("DELETE FROM sermons WHERE id = :id");
-            $query_delete->bindParam("id", $_GET['id']);
-            if ($query_delete->execute()) {
-                echo "De preek is verwijderd!";
-            } else {
-                echo "Er is een fout opgetreden!";
-            }
-        }
-    } catch (PDOException $e) {
-        die("Error!: " . $e->getMessage());
+  try {       //DELETE!!!!!!
+    if (isset($_GET['id'])) {
+      $query_delete = $db->prepare("DELETE FROM sermons WHERE id = :id");
+      $query_delete->bindParam("id", $_GET['id']);
+      if ($query_delete->execute()) {
+        echo "De preek is verwijderd!";
+      } else {
+        echo "Er is een fout opgetreden!";
+      }
     }
+  } catch (PDOException $e) {
+    die("Error!: " . $e->getMessage());
+  }
   ?>
 
   <header id="sermon">
@@ -46,21 +46,37 @@ include 'menu.php';
 
   <main>
     <section id="sermons">
-      <h2>Recente Preken</h2>
-      <div>
+      <div id="sermons-header">
+        <h2>Recente Preken</h2>
+
+        <form class="search-bar" method="POST" action="">
+          <input type="text" name="search_sermon" placeholder="Zoek...">
+          <button type="submit">Zoek</button>
+        </form>
+      </div>
+
+      <div id="sermon-list">
         <?php
         try {
-          $query_show = "SELECT * FROM sermons ORDER BY date DESC LIMIT 10";
-          $result =  $db->query($query_show)->fetchAll(PDO::FETCH_ASSOC);
+          if(isset($_POST['search_sermon'])) {    //if search term is set
+            $search_term = htmlspecialchars($_POST['search_sermon']);
+            $query_show = $db->prepare("SELECT * FROM sermons WHERE name LIKE :search OR title LIKE :search ORDER BY date DESC");
+            $like_search = "%" . $search_term . "%";
+            $query_show->bindParam("search", $like_search);
+          } else {                         //if no search term, show all
+            $query_show = $db->prepare("SELECT * FROM sermons ORDER BY date DESC LIMIT 10");
+          }
+          $query_show->execute();
+          $result = $query_show->fetchAll(PDO::FETCH_ASSOC);
           foreach ($result as $row) {
             echo '<div class="sermon">';
             echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
             echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
-            if(isset($user_data))   //SHOW EDIT/DELETE LINKS IF LOGGED IN
+            if (isset($user_data))   //SHOW EDIT/DELETE LINKS IF LOGGED IN
             {
-                echo '<div><a href="update_sermon.php?id=' . $row['id'] . '">Bewerk</a>';           //UPDATE LINK
-                echo ' | ';
-                echo '<a href="sermons.php?id=' . $row['id'] . '" class="delete-link">Verwijder</a></div>';        //DELETE LINK
+              echo '<div><a href="update_sermon.php?id=' . $row['id'] . '">Bewerk</a>';           //UPDATE LINK
+              echo ' | ';
+              echo '<a href="sermons.php?id=' . $row['id'] . '" class="delete-link">Verwijder</a></div>';        //DELETE LINK
             }
             echo '</div>';
           }
@@ -73,24 +89,20 @@ include 'menu.php';
     </section>
   </main>
 
-  <footer>
-    <a href="#">Schuilplaats</a>
-    <a href="#">06-12345678</a>
-    <a href="#">info@deschuilplaats.nl</a>
-  </footer>
+  <?php include 'footer.html'; ?>
 
-
-  <script>    //conform delete
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('a.delete-link').forEach(function (link) {
-          link.addEventListener('click', function (e) {
-            if (!confirm('Weet je zeker dat je deze dienst wilt verwijderen? Deze actie kan niet ongedaan gemaakt worden.')) {
-              e.preventDefault();
-            }
-          });
+  <script>
+    //conform delete
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a.delete-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          if (!confirm('Weet je zeker dat je deze dienst wilt verwijderen? Deze actie kan niet ongedaan gemaakt worden.')) {
+            e.preventDefault();
+          }
         });
       });
-    </script>
+    });
+  </script>
 </body>
 
 </html>

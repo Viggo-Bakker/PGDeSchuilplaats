@@ -1,7 +1,6 @@
 <HTML>
 
 <HEAD>
-    <TITLE>db connect</TITLE>
 </HEAD>
 
 <BODY>

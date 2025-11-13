@@ -7,7 +7,6 @@ include 'functions.php';
 $user_data = check_login($db, false);
 
 include 'menu.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -84,13 +83,13 @@ include 'menu.php';
       <h3>Activiteiten</h3>
       <div>
 
-        <a href="#">
+        <a href="services.php">
           <div class="activity">
             <div class="image-container">
               <img src="images/diensten.jpg" alt="Eredienst">
             </div>
             <div class="text-container">
-              <h4>Eredienst</h4>
+              <h4>Samenkomst</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
             </div>
           </div>
@@ -124,11 +123,7 @@ include 'menu.php';
     </section>
   </main>
 
-  <footer>
-    <a href="#">Schuilplaats</a>
-    <a href="#">06-12345678</a>
-    <a href="#">info@deschuilplaats.nl</a>
-  </footer>
+  <?php include 'footer.html'; ?>
 </body>
 
 </html>

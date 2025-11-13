@@ -5,6 +5,8 @@ session_start();
 include 'dbconnect.php';
 include 'functions.php';
 
+$user_data = check_login($db, true);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_name = trim($_POST['username']);
     $password = trim($_POST['password']);
@@ -62,8 +64,6 @@ include 'menu.php';
             <input type="password" name="password" placeholder="Wachtwoord" required>
 
             <button type="submit">Registreren</button>
-
-            <a href="login.php">Inloggen</a>
         </form>
     </section>
 </body>

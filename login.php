@@ -57,8 +57,6 @@ include 'menu.php';
             <input type="password" name="password" placeholder="Wachtwoord" required>
 
             <button type="submit">Log in</button>
-
-            <a href="signup.php">registreren</a>
         </form>
     </section>
 </body>

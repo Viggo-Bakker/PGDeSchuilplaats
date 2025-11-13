@@ -26,32 +26,63 @@ h3 {
 
 /* ------- HEADER ------- */
 header#sermon {
-    margin-top: 100px;
-    margin-bottom: 20px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     justify-self: flex-start;
     text-align: center;
+    background-color: rgb(226, 224, 218);
+    font-size: 1.6rem;
 }
 
 
 /* ------- MAIN ------- */
 main {
     flex: 1;
-    padding: 0 20px;
+    padding: 100px 20px;
     padding-bottom: 40px;
 }
 
 
 /* OVERVIEW SERMONS */
-#sermons h3 {
-  margin-bottom: 40px;
+#sermons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
 
-#sermons>div {
+#sermons #sermons-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+}
+
+#sermons h2 {
+  font-size: 1.9rem;
+}
+
+#sermons .search-bar {
+  transform: translateY(0px);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#sermons #sermon-list {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 40px;
+  /* border: 3px solid black; */
+  width: fit-content;
+  padding: 20px;
+
 }
 
 .sermon {

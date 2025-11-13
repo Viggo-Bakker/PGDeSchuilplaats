@@ -119,11 +119,6 @@ include 'menu.php';
         </section>
     </main>
 
-    <footer>
-        <a href="#">Schuilplaats</a>
-        <a href="#">06-12345678</a>
-        <a href="#">info@deschuilplaats.nl</a>
-    </footer>
 
     <script>    //conform delete
       document.addEventListener('DOMContentLoaded', function () {
