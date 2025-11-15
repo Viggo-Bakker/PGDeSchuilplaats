@@ -9,6 +9,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    font-family: sans-serif;
+
 }
 
 /* Algemeen */
@@ -17,7 +19,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .header {
@@ -26,6 +28,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(226, 224, 218);
 }
 
 .info {
@@ -40,6 +43,24 @@ main {
 
 
 /* specifieke stijlen */
+
+/* beneath AGENDA */
+#agenda-info {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#agenda-info iframe {
+    border-width:0; 
+    width: 800;
+    height: 600;
+}
+
+#agenda-info iframe#planning {
+    display: none;
+}
+
+
 #services-header {
     background-image: url("background-images/samenkomst.jpg");
     background-size: cover;
@@ -63,4 +84,176 @@ main {
     background-image: url("background-images/bible.jpg");
     background-size: cover;
     background-position: center 30%;
+}
+
+/* beneath OVER ONS */
+
+/* stuurgroep */
+#our_team-info table {
+    width: 60vw;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+#our_team-info tr {
+    border-top: 2px dashed black;
+    border-bottom: 2px dashed black;
+}
+
+#our_team-info tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#our_team-info td {
+    padding: 15px;
+    text-align: center;
+    /* border: 2px solid black; */
+}
+
+#our_team-info #description {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px 0;
+}
+
+#our_team-info .name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+#our_team-info img {
+    width: 300px;
+    height: auto;
+}
+
+/* route */
+#route-header {
+    background-image: url("background-images/route.jpg");
+    background-size: cover;
+    background-position: center 50%;
+}
+#route-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px; 
+}
+
+#route-info iframe {
+    min-width: 600px;
+    height: 450px;
+    border: 1px solid black;
+    border-radius: 5px;
+    flex: 1;
+}
+
+#route-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+/* beneath CONTACT */
+/* contact */
+#contact-form form{
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+#contact-form .formfield {
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-form input, #contact-form textarea {
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+#contact-form #options > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#contact-form #options input{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+#contact-form textarea {
+    min-height: 200px;
+    resize: none;
+    field-sizing: content;
+}
+
+#contact-form button {
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ffc461; /*   #234   */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contact-form button:hover{
+    background-color: #e6a04c;
+    transform: scale(1.05);
+}
+/* protocols */
+#protocols-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+#protocols-info table td {
+   padding: 10px 20px;
+}
+#protocols-info table td:first-child {
+    background-color: #d3d3d3;
+}
+#protocols-info table td:nth-child(2) {
+    background-color: #ececec;
+}
+
+@media (max-width: 800px) {
+    #our_team-info tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #agenda-info iframe {
+        width: 90vw;
+        height: 60vh;
+    }
+
+    #agenda-info iframe#planning {
+        display: block;
+    }
+
+    #agenda-info iframe#month {
+        display: none;
+    }
+
+    #route-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #route-info iframe {
+        min-width: 80vw;
+        height: 300px;
+        flex: none;
+    }
+
+    .header-content {
+        padding: 0 20px;
+    }
 }

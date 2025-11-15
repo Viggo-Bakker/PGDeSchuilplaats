@@ -3,17 +3,14 @@
 	transition: opacity 0.3s ease;
 	opacity: 0.4;
 	height: 90px;
-	padding-right: 18px;
 	display: flex;
 	z-index: 9999;
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-}
-
-#menu:hover {
-	opacity: 1;
+	width: 100vw;
+	padding-right: 18px;
 }
 
 #menu.scrolled {
@@ -61,17 +58,6 @@
 	margin-left: 5px;
 }
 
-#menu li a:hover {
-	color: white;
-	background: #234;
-}
-
-#menu .logo li a:hover {
-	background: none;
-	/* border: 2px solid black; */
-	box-shadow: 1px 1px 10px black;
-}
-
 #menu ul.sub-menus {
 	height: auto;
 	overflow: hidden;
@@ -91,18 +77,9 @@
 
 #menu ul.sub-menus a {
 	color: white;
-	font-size: 14px;
+	font-size: 0.85rem;
 	text-transform: capitalize;
 	line-height: 30px;
-}
-
-#menu li:hover ul.sub-menus {
-	display: block;
-}
-
-#menu ul.sub-menus a:hover {
-	background: #ffd690;
-	color: black;
 }
 
 div#right {
@@ -114,25 +91,21 @@ div#right {
 }
 
 p#user-greeting {
-    position: absolute;
-    top: 6px;
-    right: 10px;
-    margin: 0;
-    font-size: 0.8rem;
-    text-align: right;
-    color: inherit;
+	position: absolute;
+	top: 6px;
+	right: 10px;
+	margin: 0;
+	font-size: 0.8rem;
+	text-align: right;
+	color: inherit;
 }
 
-p#user-greeting a{
+p#user-greeting a {
 	text-decoration: underline;
 	font-size: 0.8rem;
 	line-height: normal;
 	display: inline;
 	padding: 0px;
-}
-
-p#user-greeting a:hover{
-	color: #51A8C8;
 }
 
 form.search-bar {
@@ -162,14 +135,122 @@ form.search-bar {
 	border: none;
 }
 
-.search-bar button:hover {
-	background: #51A8C8;
-	cursor: pointer;
+.menu-toggle {
+	display: none;
+	color: white;
+	background-color: #234;
+	font-size: 1.2rem;
+	border: 1px solid #ffd690;
+	padding: 3px 0;
 }
 
-@media screen and (max-width: 800px) {
+@media (hover: hover) {
+
+	/* css die alleen werkt als er een muispointer is */
+	#menu:hover {
+		opacity: 1;
+	}
+
+	#menu li a:hover {
+		color: white;
+		background: #234;
+	}
+
+	#menu .logo li a:hover {
+		background: none;
+		/* border: 2px solid black; */
+		box-shadow: 1px 1px 10px black;
+	}
+
+	#menu li:hover ul.sub-menus {
+		display: block;
+	}
+
+	#menu ul.sub-menus a:hover {
+		background: #ffd690;
+		color: black;
+	}
+
+	p#user-greeting a:hover {
+		color: #51A8C8;
+	}
+
+	.search-bar button:hover {
+		background: #51A8C8;
+		cursor: pointer;
+	}
+}
+
+@media (max-width: 1100px) {
 	#menu {
-		position: relative
+		position: relative;
+		flex-direction: column;
+		height: auto;
+		opacity: 1;
+		background: linear-gradient(to bottom, #ffffff, #ffc461);
+		padding-right: 0;
+	}
+
+	.menu-toggle {
+		display: block;
+	}
+
+	.nav-links, div#right {
+		display: none;	
+	}
+
+	#menu .nav-links.active {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	#menu ul.sub-menus {
+		display: block;
+		position: static;
+		background: none;
+	}
+
+	#menu a.dropdown-arrow:after {
+		display: none;
+	}
+
+	#menu ul.sub-menus li {
+		height: 40px;
+	}
+
+	#menu ul.sub-menus a {
+		color: black;
+		height: 100%;
+		font-size: 1rem;
+		line-height: 40px;
+	}
+
+	#menu ul.sub-menus a:hover {
+		background: #234;
+		color: white;
+	}
+
+	#menu #user-greeting {
+		display: none;
+	}
+
+	div#right.active {
+		display: flex;
+		align-items: center;
+	}
+
+	#menu .search-bar {
+		position: static;
+		transform: none;
+		width: 300px;
+	}
+}
+
+/* @media screen and (max-width: 800px) {
+	#menu {
+		position: relative;
 	}
 
 	#menu ul {
@@ -222,4 +303,4 @@ form.search-bar {
 	#menu input:checked~ul {
 		display: block
 	}
-}
+} */

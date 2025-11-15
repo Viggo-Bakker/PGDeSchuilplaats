@@ -128,3 +128,30 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 800px) {
+  #sermon h1 {
+    font-size: 2.5rem;
+  }
+  #sermon p {
+    font-size: 1rem;
+  }
+
+  #sermons #sermons-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #sermons .search-bar {
+    position: static;
+    transform: translateY(0);
+  }
+
+  .break{
+    display: inline;
+  }
+
+  .vertical-dash {
+    display: none;
+  }
+}

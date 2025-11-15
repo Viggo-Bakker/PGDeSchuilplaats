@@ -70,7 +70,7 @@ include 'menu.php';
           $result = $query_show->fetchAll(PDO::FETCH_ASSOC);
           foreach ($result as $row) {
             echo '<div class="sermon">';
-            echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
+            echo '<p>' . htmlspecialchars($row['date']) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['name']) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['title']) . '</p>';
             echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
             if (isset($user_data))   //SHOW EDIT/DELETE LINKS IF LOGGED IN
             {

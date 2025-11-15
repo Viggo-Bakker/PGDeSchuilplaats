@@ -11,91 +11,91 @@ include 'menu.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
-    <link href='styles.css' rel="stylesheet">
+    <link href='css/suppages.css' rel="stylesheet">
 </head>
-<body>
 
+<body>
     <main>
-        <div class="center-container">
-        <section>
+        <section class="header" id="contact-header">
+            <div class="header-content">
+                <h1>Neem contact met ons op</h1>
+                <p>Heb je vragen of opmerkingen? Vul het onderstaande formulier in en we nemen zo snel mogelijk contact met je op!</p>
+            </div>
+        </section>
+        <section class="info" id="contact-form">
             <div>
                 <h1>Contactformulier</h1>
             </div>
 
-            <div id="contact-form">
-                <form action="https://docent.cmi.hr.nl/moora/frontend/send-mail.php" method="POST">
-                    <div>
-                        <label for="name" >Naam*</label>
-                        <input type="text" id="name" name="name" placeholder="Voer volledige naam in..." required >
-                    </div>
+            <form action="" method="POST">
+                <div class="formfield">
+                    <label for="name">Naam*</label>
+                    <input type="text" id="name" name="name" placeholder="Voer volledige naam in..." required>
+                </div>
 
-                    <div>
-                        <label for="email">E-mail*</label>
-                        <input type="email" id="email" name="email" placeholder="Voer e-mailadres in..." required >
-                    </div>
+                <div class="formfield">
+                    <label for="email">E-mail*</label>
+                    <input type="email" id="email" name="email" placeholder="Voer e-mailadres in..." required>
+                </div>
 
-                    <div>
-                        <label for="city">Woonplaats*</label>
-                        <input type="text" id="city" name="city" placeholder="Voer woonplaats in..." required >
-                    </div>
-
-                    <div>
-                        <label for="birthdate">Geboorte Datum*</label>
-                        <input type="date" id="birthdate" name="birthdate" placeholder="" required >
-                    </div>
-
-                    <div>
-                        <label for="docent">Verstuur naar*</label>
-                        <select id="docent" name="send-to" required>
-                            <option value="" disabled selected>Kies een Docent</option>
-                            <option value="0">Antwan</option>
-                            <option value="1">Erik</option>
-                            <option value="2">Martijn</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Categorie*</label>
-                        <div id="options">
-                            <div class="mobile-left">
-                                <input type="radio" id="overall" name="category" value="algemeen" required>
-                                <label for="overall">Algemeen</label>
-                            </div>
-                            <div class="mobile-left">
-                                <input type="radio" id="programming" name="category" value="programming" required>
-                                <label for="programming">Programmeren</label>
-                            </div>
-                            <div class="mobile-left">
-                                <input type="radio" id="CLE" name="category" value="cle" required>
-                                <label for="CLE">CLE</label>
-                            </div>
+                <div class="formfield">
+                    <label>Categorie*</label>
+                    <div id="options">
+                        <div>
+                            <input type="radio" id="question" name="category" value="vraag" required>
+                            <label for="question">Vraag</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="remark" name="category" value="opmerking" required>
+                            <label for="remark">Opmerking</label>
                         </div>
                     </div>
+                </div>
 
-                        <label for="question">Jouw vraag*</label>
-                        <textarea id="question" name="question" required></textarea>
+                <div class="formfield">
+                    <label for="message">Bericht*</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
 
-                    <div id="terms-and-conditions-div">
-                        <input type="checkbox" id="terms-and-conditions" required >
-                        <label for="terms-and-conditions">Ik ga akkoord met de algemene voorwaarden*</label>
-                    </div>
+                <div class="formfield">
+                    <button type="submit">Verstuur e-mail</button>
 
-                    <div>
-                        <button type="submit">Verstuur e-mail</button>
-                    </div>
+                    <?php 
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $name = htmlspecialchars($_POST['name']);
+                            $email = htmlspecialchars($_POST['email']);
+                            $category = htmlspecialchars($_POST['category']);       //subject
+                            $message = htmlspecialchars($_POST['message']);
+                            
+                            // Always set content-type when sending HTML email
+                            $headers = "MIME-Version: 1.0" . "\r\n";
+                            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-                    <p>* Verplichte velden</p>
-                </form>                           
-            </div>
+                            // More headers
+                            $headers .= "From: " . $email . "\r\n" ;
+
+                            if(mail("joahmqkh@gmail.com", $category, $message, $headers)) {
+                                echo "<p class='success'>E-mail succesvol verzonden!</p>";
+                            } else {
+                                echo "<p class='error'>Er is een fout opgetreden bij het verzenden van de e-mail. Probeer het later opnieuw.</p>";
+                            }
+                        }
+                    ?>
+
+                </div>
+
+                <p>* Verplichte velden</p>
+            </form>
         </section>
-        </div>
     </main>
 
     <?php include 'footer.html'; ?>
 </body>
+
 </html>

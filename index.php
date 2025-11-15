@@ -30,7 +30,7 @@ include 'menu.php';
   </header>
 
   <main>
-    <section id="about-us">
+    <section id="intro">
       <h2>Deepen your relationship with God <i>and your family</i></h2>
       <div id="text-background">
         <p>Openbaring 1:7 <br> Zie, Hij komt met de wolken, en elk oog zal Hem zien, ook zij die hem doorstoken hebben. En alle stammen van de aarde zullen rouw over Hem bedrijven. Ja, amen.</p>
@@ -47,8 +47,8 @@ include 'menu.php';
           foreach ($result as $row) {
             echo '<div class="service">';
             echo '<h4>' . htmlspecialchars(formatDutchDate($row['date'])) . '</h4>';
-            echo '<p>' . htmlspecialchars($row['special_occasion']) . '</p>';
-            echo '<p>' . htmlspecialchars(date("H:i", strtotime($row['time']))) . ' | ' . htmlspecialchars($row['speaker']) . ' | OvD: ' . htmlspecialchars($row['elder']) . '</p>';
+            echo '<p id="special-occasion">' . htmlspecialchars($row['special_occasion']) . '</p><br class="break">';
+            echo '<p>' . htmlspecialchars(date("H:i", strtotime($row['time']))) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['speaker']) . '<br class="break"><span class="vertical-dash"> | </span>OvD: ' . htmlspecialchars($row['elder']) . '</p></div>';
             echo '</div>';
           }
         } catch (PDOException $e) {
@@ -67,7 +67,7 @@ include 'menu.php';
           $result =  $db->query($query_show_sermons)->fetchAll(PDO::FETCH_ASSOC);
           foreach ($result as $row) {
             echo '<div class="sermon">';
-            echo '<p>' . htmlspecialchars($row['date']) . ' | ' . htmlspecialchars($row['name']) . ' | ' . htmlspecialchars($row['title']) . '</p>';
+            echo '<p>' . htmlspecialchars($row['date']) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['name']) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['title']) . '</p>';
             echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
             echo '</div>';
           }
@@ -81,44 +81,130 @@ include 'menu.php';
 
     <section id="activities">
       <h3>Activiteiten</h3>
-      <div>
+      <div class="kind-of-activities">
+        <h4>Wekelijkse Activiteiten</h4>
 
-        <a href="services.php">
-          <div class="activity">
-            <div class="image-container">
-              <img src="images/diensten.jpg" alt="Eredienst">
+        <div class="activities-container">
+          <a href="services.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/diensten.jpg" alt="Eredienst">
+              </div>
+              <div class="text-container">
+                <h4>Samenkomst</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
             </div>
-            <div class="text-container">
-              <h4>Samenkomst</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
-            </div>
-          </div>
-        </a>
+          </a>
 
-        <a href="#">
-          <div class="activity">
-            <div class="image-container">
-              <img src="images/prayer.jpg" alt="Bidstond">
+          <a href="bidstond.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/prayer.jpg" alt="Bidstond">
+              </div>
+              <div class="text-container">
+                <h4>Bidstond</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
             </div>
-            <div class="text-container">
-              <h4>Bidstond</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
-            </div>
-          </div>
-        </a>
+          </a>
 
-        <a href="#">
-          <div class="activity">
-            <div class="image-container">
-              <img src="images/jeugd.jpg" alt="Jeugdgroep">
+          <a href="huiskring.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/huiskring.jpg" alt="Huiskring">
+              </div>
+              <div class="text-container">
+                <h4>Huiskring</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
             </div>
-            <div class="text-container">
-              <h4>Jeugdgroep</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
-            </div>
-          </div>
-        </a>
+          </a>
+        </div>
+      </div>
 
+      <div class="kind-of-activities">
+        <h4>Maandelijkse Activiteiten</h4>
+
+        <div class="activities-container">
+          <a href="agenda.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/avondmaal.png" alt="Avondmaal">
+              </div>
+              <div class="text-container">
+                <h4>Avondmaal</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
+            </div>
+          </a>
+
+          <a href="children.php#kidspraise">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/kinderen.png" alt="Kidspraise">
+              </div>
+              <div class="text-container">
+                <h4>Kidspraise</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
+            </div>
+          </a>
+
+          <a href="youth.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/jeugd.jpg" alt="Jeugdgroep">
+              </div>
+              <div class="text-container">
+                <h4>Jeugdgroep</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="kind-of-activities">
+        <h4>Bijzondere Activiteiten</h4>
+
+        <div class="activities-container">
+          <a href="education.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/baptism.jpg" alt="Doopdienst">
+              </div>
+              <div class="text-container">
+                <h4>Doopdienst</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
+            </div>
+          </a>
+
+          <a href="alpha.php">
+            <div class="activity">
+              <div class="image-container">
+                <img src="images/alpha.jpg" alt="Alpha cursus">
+              </div>
+              <div class="text-container">
+                <h4>Alpha cursus</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
+            </div>
+          </a>
+
+          <!-- <a href="#">
+            <div class="activity">
+              <div class="image-container">
+                <img src="#" alt="#">
+              </div>
+              <div class="text-container">
+                <h4>nog iets</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus ultricies facilisis. Vestibulum convallis neque vel consequat vestibulum. Mauris vel mi vitae enim gravida bibendum. Cras egestas est a tortor facilisis interdum. </p>
+              </div>
+            </div>
+          </a> -->
+        </div>
       </div>
     </section>
   </main>
