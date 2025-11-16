@@ -6,7 +6,6 @@ include 'functions.php';
 
 $user_data = check_login($db, false);
 
-include 'menu.php';
 
 ?>
 
@@ -25,7 +24,7 @@ include 'menu.php';
     try {
         // Als POST & FILES leeg zijn maar CONTENT_LENGTH aanwezig is, is waarschijnlijk post_max_size overschreden
         if (empty($_POST) && empty($_FILES) && !empty($_SERVER['CONTENT_LENGTH'])) {
-            echo '<p style="color:red;">Upload mislukt: bestand is groter dan de serverlimiet. Vergroot upload_max_filesize / post_max_size in php.ini.</p>';
+            $message = '<p style="color:red;">Upload mislukt: bestand is groter dan de serverlimiet. Vergroot upload_max_filesize / post_max_size in php.ini.</p>';
         } else {
             if (isset($_POST['send'])) {
                 $sermon_date = $_POST['sermon_date'] ?? null;
@@ -47,15 +46,24 @@ include 'menu.php';
                     $targetFullPath = $uploadDir . basename($fileName);
                     $filePathToSave = 'uploads/audio/' . basename($fileName);
 
-                    // verplaats bestand naar uploads map
-                    if (!move_uploaded_file($tmpName, $targetFullPath)) {
-                        throw new Exception("Kon bestand niet verplaatsen");
+                    $allowedTypes = ['audio/mpeg', 'audio/mp3'];
+                    $allowedExtensions = ['mp3'];
+                    $filetype = $_FILES['sermon_audio']['type'];
+                    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                    if (in_array($filetype, $allowedTypes) && in_array($fileExtension, $allowedExtensions)) {
+                        if (!move_uploaded_file($tmpName, $targetFullPath)) {
+                            $message = "Fout bij uploaden nieuw bestand.";
+                        }
+                    } else {
+                        $message = "Ongeldig bestandstype. Alleen .mp3 bestanden zijn toegestaan.";
                     }
+                    // verplaats bestand naar uploads map
                 }
                 // opslaan in database 
                 $id = $_GET['id'] ?? null;
                 if (!$id) {
-                    echo "Geen geldige id om bij te werken.";
+                    $message = "Geen geldige id om bij te werken.";
                 } else {
                     $query_upload = $db->prepare("UPDATE sermons SET date = :date,
                                                 name = :name,
@@ -88,8 +96,11 @@ include 'menu.php';
             }
         }
     } catch (PDOException $e) {
-        die("Error!: " . $e->getMessage());
+        die("Error! ");
     }
+
+    include 'menu.php';
+
     ?>
     <main>
         <section id="upload-form" style="margin-top: 100px;">
@@ -122,6 +133,11 @@ include 'menu.php';
                 </div>
 
                 <button type="submit" name="send" value="Upload Preek">Versturen</button>
+                <?php
+                if (isset($message)) {
+                    echo '<div class="form-message">' . htmlspecialchars($message) . '</div>';
+                }
+                ?>
             </form>
         </section>
     </main>

@@ -6,8 +6,6 @@ include 'functions.php';
 
 $user_data = check_login($db, false);
 
-include 'menu.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +44,7 @@ include 'menu.php';
                 header("Location: admin_services.php");
                 exit();
             } else {
-                echo "Er is een fout opgetreden!";
+                $message = "Er is een fout opgetreden!";
             }
         } else {
             $query = $db->prepare("SELECT * FROM services 
@@ -64,8 +62,11 @@ include 'menu.php';
             }
         }
     } catch (PDOException $e) {
-        die("Error!: " . $e->getMessage());
+        die("Error!");
     }
+
+    include 'menu.php';
+
     ?>
     <main>
         <section id="upload-form" style="margin-top: 100px;">
@@ -97,6 +98,11 @@ include 'menu.php';
                 </div>
 
                 <button type="submit" name="send" value="Upload Dienst">Update</button>
+                <?php
+                if (isset($message)) {
+                    echo '<div class="form-message">' . htmlspecialchars($message) . '</div>';
+                }
+                ?>
             </form>
         </section>
     </main>

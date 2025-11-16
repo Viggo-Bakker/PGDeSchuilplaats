@@ -33,7 +33,7 @@ include 'menu.php';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Als POST & FILES leeg zijn maar CONTENT_LENGTH aanwezig is, is waarschijnlijk post_max_size overschreden
         if (empty($_POST) && empty($_FILES) && !empty($_SERVER['CONTENT_LENGTH'])) {
-            echo '<p style="color:red;">Upload mislukt: bestand is groter dan de serverlimiet. Vergroot upload_max_filesize / post_max_size in php.ini.</p>';
+            $message = '<p style="color:red;">Upload mislukt: bestand is groter dan de serverlimiet.</p>'; /* Vergroot upload_max_filesize / post_max_size in php.ini. */
         } else {
             // je bestaande formulierverwerking hier...
             if (isset($_POST['send'])) {
@@ -47,14 +47,24 @@ include 'menu.php';
                     $uploadDir = 'uploads/audio/';
                     $filePath = $uploadDir . basename($fileName);
 
-                    // verplaats bestand naar uploads map
-                    if (move_uploaded_file($tmpName, $filePath)) {
-                        // opslaan in database (alleen pad)
-                        $query_upload = $db->prepare("INSERT INTO sermons(date, name, title, file) VALUES(?, ?, ?, ?)");
-                        $query_upload->execute([$sermon_date, $speaker_name, $sermon_title, $filePath]);
-                        echo "Upload gelukt!";
-                    } else {
-                        echo "Fout bij uploaden!";
+                    $allowedTypes = ['audio/mpeg', 'audio/mp3'];
+                    $allowedExtensions = ['mp3'];
+                    $filetype = $_FILES['sermon_audio']['type'];
+                    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                    if (in_array($filetype, $allowedTypes) && in_array($fileExtension, $allowedExtensions)) {
+                        // verplaats bestand naar uploads map
+                        if (move_uploaded_file($tmpName, $filePath)) {
+                            // opslaan in database (alleen pad)
+                            $query_upload = $db->prepare("INSERT INTO sermons(date, name, title, file) VALUES(?, ?, ?, ?)");
+                            $query_upload->execute([$sermon_date, $speaker_name, $sermon_title, $filePath]);
+                            $message = "Upload gelukt!";
+                        } else {
+                            $message = "Fout bij uploaden!";
+                        }
+                    }
+                    else {
+                        $message = "Ongeldig bestandstype. Alleen .mp3 bestanden zijn toegestaan.";
                     }
                 }
             } else {
@@ -91,6 +101,11 @@ include 'menu.php';
                 </div>
 
                 <button type="submit" name="send" value="Upload Preek">Versturen</button>
+                <?php
+                if (isset($message)) {
+                    echo '<div class="form-message">' . htmlspecialchars($message) . '</div>';
+                }
+                ?>
             </form>
 
 

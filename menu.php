@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset='UTF-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel='stylesheet' href='css/menu.css'>
 
 <header>
@@ -61,18 +62,32 @@
         <p id="user-greeting"><a href="login.php" class="login-button">Inloggen</a></p>
       <?php endif; ?>
 
-      <form class="search-bar" method="POST" action="">
+      <!-- <form class="search-bar" method="POST" action="">
         <input type="text" id="search" name="search" placeholder="Zoek... (werkt nog niet)">
         <button type="submit">Zoek</button>
-      </form>
-      <!-- 
-      <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63">
+      </form> -->
+
+      <!-- RESULTATEN IN APARTE PAGINA (door google gehost) -->
+
+      <!-- <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63">
       </script>
       <div class="gcse-searchbox-only"></div> -->
+
+      <!-- RESULTATEN IN APARTE KOLOM -->
+      <!-- <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63">
+      </script>
+      <div class="gcse-searchbox"></div> -->
+
+      <!-- overlay -->
+      <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63">
+      </script>
+      <div class="gcse-search"></div>
     </div>
 
     <button class="menu-toggle">☰</button>
   </nav>
+
+
 
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
@@ -92,6 +107,35 @@
         menu.classList.remove("scrolled");
       }
     });
+
+
+    (function() {
+      const INTERVAL_MS = 30 * 60 * 1000; // 30 minuten
+
+      async function keepAlive() {    //werkt nog niet vgm
+        try {
+          await fetch('/WebsitePGDeSchuilplaats/PGDeSchuilplaatsNew/keepalive.php', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+        } catch (e) {
+          // fail silently
+          console.log('keepalive error', e);
+        }
+      }
+
+      // ping direct en elke 30min; ook ping wanneer tab zichtbaar wordt
+      document.addEventListener('DOMContentLoaded', function() {
+        keepAlive();
+        setInterval(keepAlive, INTERVAL_MS);
+        document.addEventListener('visibilitychange', function() {
+          if (document.visibilityState === 'visible') keepAlive();
+        });
+      });
+    })();
   </script>
 </header>
 

@@ -27,13 +27,13 @@ include 'menu.php';
       $query_delete = $db->prepare("DELETE FROM sermons WHERE id = :id");
       $query_delete->bindParam("id", $_GET['id']);
       if ($query_delete->execute()) {
-        echo "De preek is verwijderd!";
+        $message = "De preek is verwijderd!";
       } else {
-        echo "Er is een fout opgetreden!";
+        $message = "Er is een fout opgetreden!";
       }
     }
   } catch (PDOException $e) {
-    die("Error!: " . $e->getMessage());
+    die("Error!");
   }
   ?>
 
@@ -46,6 +46,11 @@ include 'menu.php';
 
   <main>
     <section id="sermons">
+      <?php
+      if (isset($message)) {
+        echo '<div class="form-message">' . htmlspecialchars($message) . '</div>';
+      }
+      ?>
       <div id="sermons-header">
         <h2>Recente Preken</h2>
 
@@ -81,7 +86,7 @@ include 'menu.php';
             echo '</div>';
           }
         } catch (PDOException $e) {
-          echo "Fout bij ophalen preken: " . $e->getMessage();
+          echo "Fout bij ophalen preken: ";
         }
         $db = null;
         ?>

@@ -108,6 +108,8 @@ p#user-greeting a {
 	padding: 0px;
 }
 
+
+/* self made search-bar, also works on search from sermons*/
 form.search-bar {
 	display: flex;
 	align-items: center;
@@ -135,6 +137,46 @@ form.search-bar {
 	border: none;
 }
 
+/* implemented search bar */
+#___gcse_0 {
+	width: 300px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.gsc-control-cse {
+	border-color: transparent;
+	background-color: transparent;
+}
+
+.gssb_c {	/* autocomplete dropdown */
+	display: none;
+}
+
+.gsc-modal-background-image {
+	position: fixed;
+	top: 100px;
+	right: 10vw;
+	left: auto;
+	height: 80vh;
+	width: 80vw;
+}
+
+.gsc-results-wrapper-overlay {
+	position: fixed;
+	top: 100px;
+	right: 10vw;
+	left: auto;
+	height: 80vh;
+	width: 80vw;
+}
+
+#menu .gsc-results-wrapper-overlay a {
+	padding: 0;
+}
+
+
 .menu-toggle {
 	display: none;
 	color: white;
@@ -142,7 +184,12 @@ form.search-bar {
 	font-size: 1.2rem;
 	border: 1px solid #ffd690;
 	padding: 3px 0;
+
+	/* werkt niet??
+	position: fixed;
+	top: 0; */
 }
+
 
 @media (hover: hover) {
 
@@ -175,9 +222,14 @@ form.search-bar {
 		color: #51A8C8;
 	}
 
-	.search-bar button:hover {
+	/* .search-bar button:hover {
 		background: #51A8C8;
 		cursor: pointer;
+	} */
+
+	.gsc-search-button-v2:hover {
+		cursor: pointer;
+		background-color: #51A8C8 !important;
 	}
 }
 
@@ -195,8 +247,9 @@ form.search-bar {
 		display: block;
 	}
 
-	.nav-links, div#right {
-		display: none;	
+	.nav-links,
+	div#right {
+		display: none;
 	}
 
 	#menu .nav-links.active {
@@ -241,11 +294,16 @@ form.search-bar {
 		align-items: center;
 	}
 
-	#menu .search-bar {
+	#___gcse_0 {
+		transform: none;
+		top: 0;
+	}
+
+	/* #menu .search-bar {
 		position: static;
 		transform: none;
 		width: 300px;
-	}
+	} */
 }
 
 /* @media screen and (max-width: 800px) {

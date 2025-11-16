@@ -29,13 +29,13 @@ include 'menu.php';
             $query_delete = $db->prepare("DELETE FROM services WHERE id = :id");
             $query_delete->bindParam("id", $_GET['id']);
             if ($query_delete->execute()) {
-                echo "De dienst is verwijderd!";
+                $delete_message = "De dienst is verwijderd!";
             } else {
-                echo "Er is een fout opgetreden!";
+                $delete_message = "Er is een fout opgetreden!";
             }
         }
     } catch (PDOException $e) {
-        die("Error!: " . $e->getMessage());
+        die("Error!");
     }
 
     $service_date = '';
@@ -55,9 +55,9 @@ include 'menu.php';
 
             $query_upload = $db->prepare("INSERT INTO services(date, special_occasion, time, speaker, elder) VALUES(?, ?, ?, ?, ?)");
             $query_upload->execute([$service_date, $special_occasion, $service_time, $speaker_name, $elder_name]);
-            echo "Upload gelukt!";
+            $message = "Upload gelukt!";
         } else {
-            echo "Fout bij uploaden!";
+            $message = "Fout bij uploaden!";
         }
     }
     ?>
@@ -91,10 +91,20 @@ include 'menu.php';
                 </div>
 
                 <button type="submit" name="send" value="Upload Dienst">Versturen</button>
+                <?php
+                if (isset($message)) {
+                    echo '<div class="form-message">' . htmlspecialchars($message) . '</div>';
+                }
+                ?>
             </form>
         </section>
 
         <section id="services">
+            <?php
+                if (isset($delete_message)) {
+                    echo '<div class="form-message">' . htmlspecialchars($delete_message) . '</div>';
+                }
+            ?>
             <h3>Aankomende Diensten</h3>
             <div id="services-list">
                 <?php
@@ -112,7 +122,7 @@ include 'menu.php';
                         echo '</div>';
                     }
                 } catch (PDOException $e) {
-                    echo "Fout bij ophalen diensten: " . $e->getMessage();
+                    echo "Fout bij ophalen diensten: ";
                 }
                 ?>
             </div>

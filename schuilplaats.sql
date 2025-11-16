@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 03 nov 2025 om 23:20
+-- Gegenereerd op: 16 nov 2025 om 23:47
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -47,7 +47,8 @@ INSERT INTO `sermons` (`id`, `date`, `name`, `title`, `file`) VALUES
 (5, '2025-09-21', 'Arie de Paauw', 'Hell is echt', 'uploads/audio/2025-9-21.mp3'),
 (6, '2025-09-07', 'Jaime Quevedo Klein Haneveld', 'Genade', 'uploads/audio/2025-9-7.mp3'),
 (8, '2025-10-26', 'Tineke van der Leeden', 'Strijdt op je knieën', 'uploads/audio/2025-10-26.mp3'),
-(9, '2025-11-02', 'Medhat Mouri', 'Waarom ben je hier?', 'uploads/audio/2025-11-02.mp3');
+(9, '2025-11-02', 'Medhat Mouri', 'Waarom ben je hier?', 'uploads/audio/2025-11-02.mp3'),
+(12, '2025-11-16', 'Jaime Quevedo Klein Haneveld', 'Doopdienst, verhoogde slang', 'uploads/audio/2025-11-16.mp3');
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,9 @@ INSERT INTO `services` (`id`, `date`, `special_occasion`, `time`, `speaker`, `el
 (4, '2025-11-09', '', '10:00:00', 'Theo', 'Willem-Peter'),
 (5, '2025-11-16', 'Doopdienst!', '10:00:00', 'Charles Petit', 'Rienkje'),
 (6, '2025-11-23', '', '10:00:00', 'Jaime Quevedo Klein Haneveld', 'Arjan van der Giessen'),
-(7, '2025-11-30', '10:00 - 10:30 Kidspraise | 1ste advent', '10:30:00', 'Anton Oelermans', 'Tineke van der Leeden');
+(7, '2025-11-30', '10:00 - 10:30 Kidspraise | 1ste advent', '10:30:00', 'Anton Oelermans', 'Tineke van der Leeden'),
+(13, '2025-12-07', 'Avondmaal | 2de advent', '10:00:00', 'Willem-Peter', 'Rienkje'),
+(14, '2025-12-14', '3de advent', '10:00:00', 'Rienkje', 'Willem-Peter');
 
 -- --------------------------------------------------------
 
@@ -96,9 +99,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `user_name`, `password`, `date`) VALUES
-(1, 7577485701639482214, 'JojoJoah', '$2y$10$dxy/197XlYptvxzmdC.0XOLu46Hr7Tz5TeC3I7u92A4VjJKJ7lH3q', '2025-11-02 00:28:01'),
-(3, 70643023142901224, 'Joah Admin', '$2y$10$p3ZBM0DYQSFrVeKn0XnDE.i0rQPYr8PfRwt9TfoEdbbFdnHewrO.K', '2025-11-02 16:30:01'),
-(4, 1886409709813877, 'new Admin', '$2y$10$bZA2dLAs9dTTzsmqbx4ALeF4jqZQoekPQI4W6ASFBRxPp5f2FFd/u', '2025-11-02 18:04:22');
+(3, 70643023142901224, 'Joah Admin', '$2y$10$p3ZBM0DYQSFrVeKn0XnDE.i0rQPYr8PfRwt9TfoEdbbFdnHewrO.K', '2025-11-02 16:30:01');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -133,13 +134,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `sermons`
 --
 ALTER TABLE `sermons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
