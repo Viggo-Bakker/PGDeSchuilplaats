@@ -1,5 +1,7 @@
 <?php require_once 'includes/initialize.php';
-/** @var PDO $db */ ?>
+/** @var PDO $db */
+
+?>
 
 <!DOCTYPE html>
 <html lang="nl">
@@ -14,6 +16,8 @@
 </head>
 
 <body>
+  <?php include 'menu.php'; ?>
+
   <header class="hero">
     <div class="overlay">
       <h1>Welkom bij Pinkstergemeente<br>De Schuilplaats</h1>
@@ -38,7 +42,7 @@
             <div class="service">
               <h4><?= htmlspecialchars(formatDutchDate($service['date'])) ?></h4>
               <p><?= htmlspecialchars($service['special_occasion']) ?></p>
-              <p><?= htmlspecialchars(date("H:i", strtotime($service['time']))) ?> <span class="vertical-dash"><?= htmlspecialchars($service['speaker']) ?></span> OvD: <?= htmlspecialchars($service['elder']) ?></p>
+              <p><?= htmlspecialchars(date("H:i", strtotime($service['time']))) ?> <span class="vertical-dashes"><?= htmlspecialchars($service['speaker']) ?></span> OvD: <?= htmlspecialchars($service['elder']) ?></p>
             </div>
         <?php endforeach;
         endif;
@@ -50,19 +54,16 @@
       <h3>Recent Preken</h3>
       <div>
         <?php
-        try {
-          $query_show_sermons = "SELECT date, name, title, file FROM sermons ORDER BY date DESC LIMIT 3";
-          $result =  $db->query($query_show_sermons)->fetchAll(PDO::FETCH_ASSOC);
-          foreach ($result as $row) {
-            echo '<div class="sermon">';
-            echo '<p>' . htmlspecialchars($row['date']) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['name']) . '<br class="break"><span class="vertical-dash"> | </span>' . htmlspecialchars($row['title']) . '</p>';
-            echo '<audio controls="" preload="metadata" name="media"><source src="' . htmlspecialchars($row['file']) . '" type="audio/mpeg"></audio>';
-            echo '</div>';
-          }
-        } catch (PDOException $e) {
-          echo "Fout bij ophalen preken: " . $e->getMessage();
-        }
-        $db = null;
+        if (isset($sermons) && count($sermons) > 0): ?>
+          <?php for ($i = 0; $i < 3; $i++): ?>
+            <div class="sermon">
+              <p><?= htmlspecialchars(formatDutchDate($sermons[$i]['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermons[$i]['name']) ?></span> <?= htmlspecialchars($sermons[$i]['title']) ?></p>
+              <audio controls="" preload="metadata" name="media">
+                <source src="includes/data/<?= htmlspecialchars($sermons[$i]['file']) ?>" type="audio/mpeg">
+              </audio>
+            </div>
+        <?php endfor;
+        endif;
         ?>
       </div>
     </section>
