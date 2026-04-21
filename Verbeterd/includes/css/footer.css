@@ -1,0 +1,39 @@
+/* -------- FOOTER -------- */
+footer {
+  background: #234;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+footer a {
+  color: white;
+}
+
+footer #links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+@media (hover: hover) {
+  footer a:hover {
+    color: #ffc461;
+  }
+}
+
+@media (max-width: 600px) {
+  footer {
+    align-items: flex-start;
+  }
+
+  footer #links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+section#login, section#signup {
+    padding: 20px;
+    margin: 100px auto;
+    text-align: center;
+    width: 300px;
+}
+
+#login h2, #signup h2 {
+    margin-bottom: 20px;
+}
+
+#login form, #signup form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+}
