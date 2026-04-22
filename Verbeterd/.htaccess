@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Als bestand of map NIET bestaat → stuur naar index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

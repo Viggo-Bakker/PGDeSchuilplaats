@@ -14,3 +14,6 @@ $sermonsCollection = new \System\SermonsCollection\Collection();
 $sermonsCollection->set(\System\SermonsCollection\Sermon::getAll($db->getConnection()));
 
 $sermons = $sermonsCollection->get();
+
+
+$pageTitle = 'Home';
