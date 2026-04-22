@@ -31,7 +31,7 @@ h3 {
 
 /* ------- HEADER -------- */
 .hero {
-  background: url('background-images/hero.jpg') 25%/cover no-repeat;
+  background: url('../assets/background-images/hero.jpg') 25%/cover no-repeat;
   height: 120vh;
   position: relative;
 }
@@ -193,7 +193,7 @@ audio {
 #activities {
   padding: 10vh 0;
   position: relative;
-  background-image: url('background-images/lake-and-mountain.jpg');
+  background-image: url('../assets/background-images/lake-and-mountain.jpg');
   background-size: cover;
   background-position: center 25%;
   background-attachment: fixed;

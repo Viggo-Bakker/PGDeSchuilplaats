@@ -1,4 +1,8 @@
-<?php require_once 'includes/initialize.php';
+<?php
+
+use System\Utils\TimeFormatter;
+
+ require_once 'includes/initialize.php';
 /** @var PDO $db */
 
 ?>
@@ -12,11 +16,11 @@
   <META NAME="keywords" CONTENT="kerk, pinkster, pinkstergemeente, gemeente, spijkenisse, hekelingen, schuilplaats, nissewaard">
   <META NAME="description" CONTENT="Website van pinkstergemeente De Schuilplaats in Hekelingen (Spijkenisse)">
   <title>PG De Schuilplaats</title>
-  <link rel="stylesheet" href='includes/css/styles.css'>
+  <link rel="stylesheet" href='src/css/styles.css'>
 </head>
 
 <body>
-  <?php include 'menu.php'; ?>
+  <?php include 'includes/menu.php'; ?>
 
   <header class="hero">
     <div class="overlay">
@@ -40,7 +44,7 @@
         if (isset($soonServices) && count($soonServices) > 0): ?>
           <?php foreach ($soonServices as $service): ?>
             <div class="service">
-              <h4><?= htmlspecialchars(formatDutchDate($service['date'])) ?></h4>
+              <h4><?= htmlspecialchars(TimeFormatter::formatDutchDate($service['date'])) ?></h4>
               <p><?= htmlspecialchars($service['special_occasion']) ?></p>
               <p><?= htmlspecialchars(date("H:i", strtotime($service['time']))) ?> <span class="vertical-dashes"><?= htmlspecialchars($service['speaker']) ?></span> OvD: <?= htmlspecialchars($service['elder']) ?></p>
             </div>
@@ -57,9 +61,9 @@
         if (isset($sermons) && count($sermons) > 0): ?>
           <?php for ($i = 0; $i < 3; $i++): ?>
             <div class="sermon">
-              <p><?= htmlspecialchars(formatDutchDate($sermons[$i]['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermons[$i]['name']) ?></span> <?= htmlspecialchars($sermons[$i]['title']) ?></p>
+              <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($sermons[$i]['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermons[$i]['name']) ?></span> <?= htmlspecialchars($sermons[$i]['title']) ?></p>
               <audio controls="" preload="metadata" name="media">
-                <source src="includes/data/<?= htmlspecialchars($sermons[$i]['file']) ?>" type="audio/mpeg">
+                <source src="src/assets/<?= htmlspecialchars($sermons[$i]['file']) ?>" type="audio/mpeg">
               </audio>
             </div>
         <?php endfor;
@@ -77,7 +81,7 @@
           <a href="services.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/diensten.jpg" alt="Eredienst">
+                <img src="src/assets/images/diensten.jpg" alt="Eredienst">
               </div>
               <div class="text-container">
                 <h4>Samenkomst</h4>
@@ -89,7 +93,7 @@
           <a href="bidstond.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/prayer.jpg" alt="Bidstond">
+                <img src="src/assets/images/prayer.jpg" alt="Bidstond">
               </div>
               <div class="text-container">
                 <h4>Bidstond</h4>
@@ -101,7 +105,7 @@
           <a href="huiskring.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/huiskring.jpg" alt="Huiskring">
+                <img src="src/assets/images/huiskring.jpg" alt="Huiskring">
               </div>
               <div class="text-container">
                 <h4>Huiskring</h4>
@@ -119,7 +123,7 @@
           <a href="agenda.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/avondmaal.png" alt="Avondmaal">
+                <img src="src/assets/images/avondmaal.png" alt="Avondmaal">
               </div>
               <div class="text-container">
                 <h4>Avondmaal</h4>
@@ -131,7 +135,7 @@
           <a href="children.php#kidspraise">
             <div class="activity">
               <div class="image-container">
-                <img src="images/kinderen.png" alt="Kidspraise">
+                <img src="src/assets/images/kinderen.png" alt="Kidspraise">
               </div>
               <div class="text-container">
                 <h4>Kidspraise</h4>
@@ -143,7 +147,7 @@
           <a href="youth.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/jeugd.jpg" alt="Jeugdgroep">
+                <img src="src/assets/images/jeugd.jpg" alt="Jeugdgroep">
               </div>
               <div class="text-container">
                 <h4>Jeugdgroep</h4>
@@ -161,7 +165,7 @@
           <a href="education.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/baptism.jpg" alt="Doopdienst">
+                <img src="src/assets/images/baptism.jpg" alt="Doopdienst">
               </div>
               <div class="text-container">
                 <h4>Doopdienst</h4>
@@ -173,7 +177,7 @@
           <a href="alpha.php">
             <div class="activity">
               <div class="image-container">
-                <img src="images/alpha.jpg" alt="Alpha cursus">
+                <img src="src/assets/images/alpha.jpg" alt="Alpha cursus">
               </div>
               <div class="text-container">
                 <h4>Alpha cursus</h4>
@@ -185,7 +189,7 @@
           <!-- <a href="#">
             <div class="activity">
               <div class="image-container">
-                <img src="#" alt="#">
+                <img src="src/assets/images/nogiets.jpg" alt="Nog iets">
               </div>
               <div class="text-container">
                 <h4>nog iets</h4>
@@ -198,7 +202,7 @@
     </section>
   </main>
 
-  <?php include 'footer.html'; ?>
+  <?php include 'includes/footer.php'; ?>
 </body>
 
 </html>

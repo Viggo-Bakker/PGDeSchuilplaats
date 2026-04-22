@@ -2,14 +2,14 @@
 <html>
 <meta charset='UTF-8'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel='stylesheet' href='includes/css/menu.css'>
+<link rel='stylesheet' href='src/css/menu.css'>
 
 <header>
   <nav id='menu'>
     <ul class='logo'>
       <li>
         <a href='index.php' class='logo'>
-          <img src="images/new-logo.png" alt="De Schuilplaats logo" class="logo" />
+          <img src="src/assets/images/new-logo.png" alt="De Schuilplaats logo" class="logo" />
         </a>
       </li>
     </ul>
