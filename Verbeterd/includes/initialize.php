@@ -1,11 +1,12 @@
 <?php 
 
 require_once 'settings.php';
-require_once 'classes/System/Databases/Database.php';
-require_once 'classes/System/ServicesCollection/Collection.php';
-require_once 'classes/System/ServicesCollection/Service.php';
-require_once 'classes/System/SermonsCollection/Collection.php';
-require_once 'classes/System/SermonsCollection/Service.php';
+// require_once 'classes/System/Databases/Database.php';
+// require_once 'classes/System/ServicesCollection/Collection.php';
+// require_once 'classes/System/ServicesCollection/Service.php';
+// require_once 'classes/System/SermonsCollection/Collection.php';
+// require_once 'classes/System/SermonsCollection/Service.php';
+require_once 'vendor/autoload.php';
 
 require_once 'functions.php';
 

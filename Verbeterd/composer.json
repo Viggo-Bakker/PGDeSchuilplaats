@@ -1,0 +1,17 @@
+{
+    "name": "joah/schuilplaats_composer",
+    "description": "project voor de Schuilplaats",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "System\\": "includes/classes/System"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jojo-gamer",
+            "email": "joahmqkh@gmail.com"
+        }
+    ],
+    "require": {}
+}
