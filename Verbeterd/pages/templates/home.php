@@ -40,7 +40,7 @@
             <div class="sermon">
               <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($sermons[$i]['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermons[$i]['name']) ?></span> <?= htmlspecialchars($sermons[$i]['title']) ?></p>
               <audio controls="" preload="metadata" name="media">
-                <source src="src/assets/<?= htmlspecialchars($sermons[$i]['file']) ?>" type="audio/mpeg">
+                <source src="src/assets/uploads/audio/<?= htmlspecialchars($sermons[$i]['file']) ?>" type="audio/mp3">
               </audio>
             </div>
         <?php endfor;

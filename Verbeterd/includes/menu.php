@@ -40,7 +40,7 @@
       </li>
       <li><a class='dropdown-arrow' href='education.php'>Onderwijs</a>
         <ul class='sub-menus'>
-          <li><a href='sermons.php'>- Preken</a></li>
+          <li><a href='<?= BASE_PATH . "sermons" ?>'>- Preken</a></li>
           <li><a href='children.php'>- Kinderen</a></li>
           <li><a href='teens.php'>- Tieners</a></li>
           <li><a href='youth.php'>- Jeugd</a></li>
