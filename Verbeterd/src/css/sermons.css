@@ -1,207 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Public sermon overview */
+.page-hero--sermons {
+  background: linear-gradient(135deg, #1f3341, #516f7f);
 }
 
-body {
-    font-family: sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    min-height: 100vh;
+.sermon-overview {
+  gap: 1.5rem;
+  padding-bottom: 4rem;
 }
 
-h1,
-h2,
-h3 {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: normal;
+.sermon-overview__toolbar,
+.sermon-overview__list {
+  width: 100%;
 }
 
-
-/* ------- HEADER ------- */
-header#sermon {
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-self: flex-start;
-    text-align: center;
-    background-color: rgb(226, 224, 218);
-    font-size: 1.6rem;
-}
-
-
-/* ------- MAIN ------- */
-main {
-    flex: 1;
-    padding: 100px 20px;
-    padding-bottom: 40px;
-}
-
-
-/* OVERVIEW SERMONS */
-#sermons {
+.sermon-overview__toolbar {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-}
-
-#sermons #sermons-header {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50vw;
-}
-
-#sermons h2 {
-  font-size: 1.9rem;
-}
-
-#sermons .search-bar {
-  transform: translateY(0px);
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-#sermons #sermon-list {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
-  /* border: 3px solid black; */
-  width: fit-content;
-  padding: 20px;
-
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.sermon {
+.sermon-overview__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.sermon-overview .search-bar {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 5px;
-  align-items: center;
-  background-color: #f0a500;
-  width: 50vw;
-  font-family: 'Bebas Neue', serif;
-  font-size: 1.5rem;
-  color:black;
-  text-align: center;  
-  padding: 10px 0;
-  border-radius: 10px;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
 }
 
-audio {
-  margin-top: 10px;
-  height: 50px;
-  width: 90%;
+.sermon-overview .search-bar input {
+  min-width: min(320px, 100%);
 }
 
-.break {
-    display: none;
+.sermon-list {
+  display: grid;
+  gap: 1rem;
 }
 
-#show-other-container {
+.sermon-card__meta p {
+  line-height: 1.6;
+}
+
+.sermon-overview__pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 
-.show-other {
-  font-size: 1.35rem;
-}
-
-a.show-other  {
-  background-color: #234;
+.sermon-overview__page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: #234;
   color: white;
-  border: none;
-  padding: 8px 13px;
-  border-radius: 5px;
-  font-size: 1.2rem;
+  text-decoration: none;
 }
 
-a.show-other:hover {
-  background-color: #456;
-  cursor: pointer;
+.sermon-overview__page-button:hover {
+  background: #456;
 }
 
-
-/* ------- FOOTER ------- */
-footer {
-    background: #234;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
+.sermon-overview__page-label {
+  font-size: 1.05rem;
 }
 
 @media (max-width: 800px) {
-  #sermon h1 {
-    font-size: 2.5rem;
-  }
-  #sermon p {
-    font-size: 1rem;
-  }
-
-  #sermons #sermons-header {
+  .sermon-overview__toolbar {
     flex-direction: column;
-    gap: 20px;
+    align-items: stretch;
   }
 
-  #sermons .search-bar {
-    position: static;
-    transform: translateY(0);
+  .sermon-overview .search-bar {
+    justify-content: stretch;
   }
-
-  .break{
-    display: inline;
-  }
-
-  .vertical-dash {
-    display: none;
-  }
-}
-
-.content-page {
-  width: min(1100px, 100% - 2rem);
-  margin: 0 auto;
-}
-
-.content-block {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 18px;
-  padding: 1.5rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  margin-bottom: 1.5rem;
-}
-
-.service-card {
-  background: #fff7e6;
-  border: 1px solid rgba(35, 52, 68, 0.12);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
-  width: 100%;
 }

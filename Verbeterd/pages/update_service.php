@@ -4,9 +4,12 @@ $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection = $db->getConnection();
 $user_data = check_login($connection, true);
 
-$pageStyles = ['src/css/admin.css'];
+$pageStyles = ['src/css/admin.css', 'src/css/forms.css'];
 $pageTitle = 'Dienst bewerken';
 $pageTemplate = 'update_service.php';
+
+$success = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_success']);
 
 $service = [
     'id' => 0,
@@ -17,7 +20,6 @@ $service = [
     'elder' => '',
 ];
 $errors = [];
-$success = null;
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $query = $connection->prepare('SELECT * FROM services WHERE id = :id LIMIT 1');
@@ -35,16 +37,12 @@ if (!$existing) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $existing) {
     $service['date'] = trim((string) ($_POST['service_date'] ?? ''));
     $service['special_occasion'] = trim((string) ($_POST['special_occasion'] ?? ''));
-    $service['time'] = trim((string) ($_POST['service_time'] ?? ''));
+    $service['time'] = normalize_time_input($_POST['service_time'] ?? '10:00');
     $service['speaker'] = trim((string) ($_POST['speaker_name'] ?? ''));
     $service['elder'] = trim((string) ($_POST['elder_name'] ?? ''));
 
     if ($service['date'] === '' || !DateTime::createFromFormat('Y-m-d', $service['date'])) {
         $errors[] = 'Kies een geldige datum.';
-    }
-
-    if ($service['time'] === '') {
-        $errors[] = 'Vul een tijd in.';
     }
 
     if ($service['speaker'] === '') {
@@ -66,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $existing) {
             'id' => $id,
         ]);
 
-        $success = 'Dienst bijgewerkt.';
+        $_SESSION['flash_success'] = 'Dienst bijgewerkt.';
         header('Location: ' . BASE_PATH . 'admin_services');
         exit;
     }

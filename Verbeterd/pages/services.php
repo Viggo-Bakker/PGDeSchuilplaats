@@ -4,7 +4,7 @@ $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection = $db->getConnection();
 $user_data = check_login($connection, false);
 
-$pageStyles = ['src/css/suppages.css'];
+$pageStyles = ['src/css/services.css', 'src/css/suppages.css'];
 $pageTitle = 'Diensten';
 $pageTemplate = 'services.php';
 

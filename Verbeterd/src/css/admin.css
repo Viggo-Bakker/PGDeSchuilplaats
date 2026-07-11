@@ -1,207 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-h1,
-h2,
-h3 {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: normal;
-}
-
-
-
-/* ------- HEADER ------- */
-header#sermon {
-    margin-top: 100px;
-    margin-bottom: 20px;
-    justify-self: flex-start;
-    text-align: center;
-}
-
-
-/* ------- MAIN ------- */
-main {
-    flex: 1;
-    padding: 0 20px;
-    padding-bottom: 40px;
-}
-
-/* UPLOAD FORM */
-h2 {
-    margin-bottom: 20px;
-}
-
-main form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 10px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 100%;
-    pointer-events: auto;
-}
-
-input[type="text"],
-input[type="date"] {
-    padding: 5px;
-}
-
-.form-group input#sermon-audio {
-    width: fit-content;
-}
-
-button:hover {
-    cursor: pointer;
-    background-color: #456;
-    color: white;
-    box-shadow: none;
-}
-
-
-/* overview services */
-h3 {
-    font-size: 3rem;
-    text-align: center;
-}
-
-#services {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10vh 0;
-    margin: 100px auto;
-}
-
-#services-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: 800px;
-    overflow-y: auto;
-    width: fit-content;
-}
-
-.service {
-    width: 50vw;
-    font-size: 1.5rem;
-    border-bottom: 4px dotted black;
-    padding: 30px 10px;
-}
-
-.service p {
-    padding-left: 50px;
-}
-
-
-/* ------- FOOTER ------- */
-footer {
-    background: #234;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
+/* Admin layout */
 .admin-header {
-    margin-top: 110px;
+    width: min(1400px, calc(100% - 2rem));
+    margin: 110px auto 0;
+    padding: 0 1rem;
     text-align: center;
+}
+
+.admin-header h1 {
+    margin-bottom: 0.35rem;
+}
+
+.admin-header p {
+    color: #4b5a66;
 }
 
 .admin-layout {
-    width: min(1100px, 100% - 2rem);
-    margin: 2rem auto 0;
+    width: min(1400px, calc(100% - 2rem));
+    margin: 1.5rem auto 0;
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
+    align-items: stretch;
 }
 
-.admin-layout section {
+.admin-panel {
     background: rgba(255, 255, 255, 0.95);
     border-radius: 18px;
     padding: 1.5rem;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    display: grid;
+    gap: 1rem;
 }
 
-.form-errors,
-.form-success {
-    width: min(1100px, 100% - 2rem);
-    margin: 1rem auto 0;
-    padding: 0.9rem 1rem;
-    border-radius: 12px;
+.admin-feedback {
+    width: 100%;
 }
 
-.form-errors {
-    background: #ffe1e1;
+.admin-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.admin-list-item {
+    width: 100%;
+}
+
+.admin-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.admin-card-actions a {
+    color: #234;
+}
+
+.admin-card-actions .delete-link {
     color: #8b0000;
 }
 
-.form-success {
-    background: #e0f8e7;
-    color: #14532d;
+.admin-card-actions .delete-link:hover {
+    color: #5f0000;
 }
 
-.admin-layout .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.admin-layout input,
-.admin-layout textarea {
-    padding: 0.85rem 1rem;
-    border: 1px solid rgba(35, 52, 68, 0.25);
-    border-radius: 12px;
-    font: inherit;
-}
-
-.admin-layout button {
-    width: fit-content;
-    padding: 0.85rem 1.1rem;
-    border: none;
-    border-radius: 999px;
-    background: #234;
-    color: white;
-    cursor: pointer;
-}
-
-.admin-layout button:hover {
-    background: #456;
-}
-
-.service-card,
-.sermon {
-    background: #fff7e6;
-    border: 1px solid rgba(35, 52, 68, 0.12);
-    border-radius: 16px;
+.admin-empty {
     padding: 1rem;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.admin-layout .service-card,
+.admin-layout .sermon-card {
+    width: 100%;
 }

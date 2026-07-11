@@ -1,0 +1,40 @@
+/* Public services overview */
+.service-overview {
+  gap: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.service-overview__toolbar,
+.service-overview__list {
+  width: 100%;
+}
+
+.service-overview__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.service-overview__list {
+  display: grid;
+  gap: 1rem;
+}
+
+.service-overview .search-bar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.service-overview .search-bar input {
+  min-width: min(320px, 100%);
+}
+
+.service-overview .service-card {
+  max-width: 900px;
+  margin: 0 auto;
+}

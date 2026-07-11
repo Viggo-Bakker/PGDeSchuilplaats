@@ -24,9 +24,17 @@ h4 {
   font-weight: normal;
 }
 
-h3 {
-  font-size: 3rem;
-  text-align: center;
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ------- HEADER -------- */
@@ -126,60 +134,35 @@ main {
 }
 
 
-/* SERVICES */
-#services {
+/* HOMEPAGE SERVICES + SERMONS */
+#homepage-services,
+#homepage-sermons {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10vh 0;
+  gap: 2rem;
 }
 
-.service {
-  width: 50vw;
-  font-size: 1.5rem;
-  border-bottom: 4px dotted black;
-  padding: 30px 10px;
+#homepage-services {
+  background: linear-gradient(to bottom, #ffffff, #f4efe6 100%);
 }
 
-.service p {
-  padding-left: 50px;
-}
-
-
-/* SERMONS */
-#sermons {
-  /* background: linear-gradient(to bottom, white, #b5c9d5 100%); */
+#homepage-sermons {
   background-color: #f1f1f1;
-  padding: 10vh 0;
 }
 
-#sermons h3 {
-  margin-bottom: 40px;
-}
-
-#sermons>div {
+.home-card-list {
+  width: min(960px, calc(100% - 2rem));
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 1.5rem;
   align-items: center;
-  gap: 40px;
 }
 
-.sermon {
-  background-color: #f0a500;
-  width: 50vw;
-  font-family: 'Bebas Neue', serif;
-  font-size: 1.5rem;
-  color: black;
-  text-align: center;
-  padding: 10px 0;
-  border-radius: 10px;
-}
-
-audio {
-  margin-top: 10px;
-  height: 50px;
-  width: 90%;
+#homepage-services .service-card,
+#homepage-sermons .sermon-card {
+  width: min(900px, 100%);
 }
 
 
@@ -208,6 +191,12 @@ audio {
   justify-content: flex-start;
   align-items: center;
   gap: 5vh;
+}
+
+.home-section h3,
+#activities h3 {
+  font-size: 3rem;
+  text-align: center;
 }
 
 #activities h3 {
@@ -307,9 +296,9 @@ audio {
     margin-bottom: 0;
   }
 
-  #services .service,
-  .sermon {
-    width: 80vw;
+  #homepage-services .service-card,
+  #homepage-sermons .sermon-card {
+    width: min(80vw, 900px);
   }
 }
 
@@ -328,7 +317,8 @@ audio {
     max-width: 90vw;
   }
 
-  #intro h2, h3 {
+  #intro h2,
+  .home-section h3 {
     font-size: 2.5rem;
   }
   #intro p {

@@ -4,12 +4,14 @@ $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection = $db->getConnection();
 $user_data = check_login($connection, true);
 
-$pageStyles = ['src/css/admin.css', 'src/css/sermons.css'];
+$pageStyles = ['src/css/admin.css', 'src/css/sermons.css', 'src/css/forms.css'];
 $pageTitle = 'Preken beheren';
+
+$success = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_success']);
 
 $sermon = new \System\SermonsCollection\Sermon();
 $errors = [];
-$success = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sermon->date = trim((string) ($_POST['date'] ?? ''));
@@ -38,8 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sermon->file = $file->store($_FILES['audio']);
 
             if (\System\SermonsCollection\Sermon::create($sermon, $connection)) {
-                $success = 'Preek succesvol opgeslagen.';
-                $sermon = new \System\SermonsCollection\Sermon();
+                $_SESSION['flash_success'] = 'Preek succesvol opgeslagen.';
+                header('Location: ' . BASE_PATH . 'admin_sermons');
+                exit;
             } else {
                 $errors[] = 'Er is een fout opgetreden bij het opslaan van de preek.';
             }
@@ -54,7 +57,9 @@ if (isset($_GET['id'])) {
     $queryDelete->bindValue('id', (int) $_GET['id'], PDO::PARAM_INT);
 
     if ($queryDelete->execute()) {
-        $success = 'De preek is verwijderd.';
+        $_SESSION['flash_success'] = 'De preek is verwijderd.';
+        header('Location: ' . BASE_PATH . 'admin_sermons');
+        exit;
     } else {
         $errors[] = 'Er is een fout opgetreden bij verwijderen.';
     }

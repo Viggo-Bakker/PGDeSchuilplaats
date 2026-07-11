@@ -10,6 +10,7 @@
   <META NAME="description" CONTENT="Website van pinkstergemeente De Schuilplaats in Hekelingen (Spijkenisse)">
   <title>PG De Schuilplaats | <?= $pageTitle ?? '' ?></title>
   <link rel="stylesheet" href='src/css/styles.css'>
+  <link rel="stylesheet" href='src/css/cards.css'>
   <link rel="stylesheet" href='src/css/menu.css'>
   <link rel="stylesheet" href='src/css/footer.css'>
   <?php if (!empty($pageStyles)): ?>

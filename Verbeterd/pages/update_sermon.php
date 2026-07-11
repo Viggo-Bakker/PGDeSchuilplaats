@@ -4,13 +4,14 @@ $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection = $db->getConnection();
 $user_data = check_login($connection, true);
 
-$pageStyles = ['src/css/admin.css'];
+$pageStyles = ['src/css/admin.css', 'src/css/forms.css'];
 $pageTitle = 'Preek bewerken';
 $pageTemplate = 'update_sermon.php';
 
 $sermon = new \System\SermonsCollection\Sermon();
 $errors = [];
-$success = null;
+$success = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_success']);
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $query = $connection->prepare('SELECT * FROM sermons WHERE id = :id LIMIT 1');
@@ -57,7 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $existing) {
 
     if (empty($errors)) {
         if ($sermon->update($connection)) {
-            $success = 'Preek bijgewerkt.';
+            $_SESSION['flash_success'] = 'Preek bijgewerkt.';
+            header('Location: ' . BASE_PATH . 'admin_sermons');
+            exit;
         } else {
             $errors[] = 'Er is een fout opgetreden bij het opslaan.';
         }

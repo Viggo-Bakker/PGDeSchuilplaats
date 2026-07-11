@@ -1,0 +1,81 @@
+/* Shared form styling for contact/admin edit screens */
+.content-page form:not(.search-bar),
+.admin-layout form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.content-page form:not(.search-bar) .form-group,
+.admin-layout .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.content-page form:not(.search-bar) label,
+.admin-layout label {
+  font-weight: 600;
+  color: #1c2f3a;
+}
+
+.content-page form:not(.search-bar) input,
+.content-page form:not(.search-bar) textarea,
+.content-page form:not(.search-bar) select,
+.admin-layout input,
+.admin-layout textarea,
+.admin-layout select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(35, 52, 68, 0.25);
+  border-radius: 12px;
+  font: inherit;
+  background: #fff;
+}
+
+.content-page form:not(.search-bar) input[type="file"],
+.admin-layout input[type="file"] {
+  padding: 0.6rem 0;
+  border: 0;
+  background: transparent;
+}
+
+.content-page form:not(.search-bar) button,
+.admin-layout button {
+  width: fit-content;
+  padding: 0.85rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  background: #234;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+}
+
+.content-page form:not(.search-bar) button:hover,
+.admin-layout button:hover {
+  background: #456;
+}
+
+.form-errors,
+.form-success {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+}
+
+.form-errors ul,
+.form-success ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.form-errors {
+  background: #ffe1e1;
+  color: #8b0000;
+}
+
+.form-success {
+  background: #e0f8e7;
+  color: #14532d;
+}

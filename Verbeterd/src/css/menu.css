@@ -110,7 +110,7 @@ p#user-greeting a {
 
 
 /* self made search-bar, also works on search from sermons*/
-form.search-bar {
+#menu .search-bar {
 	display: flex;
 	align-items: center;
 	gap: 5px;

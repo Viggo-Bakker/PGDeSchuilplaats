@@ -1,18 +1,5 @@
 <?php
 
-function formatDutchDate(?string $date): string
-{
-    if (empty($date)) {
-        return '';
-    }
-
-    $dt = DateTime::createFromFormat('Y-m-d', $date) ?: new DateTime($date);
-    $weekdays = ['Zo', 'Ma', 'Di', 'Wo', 'Do', 'Vr', 'Za'];
-    $months = [1 => 'jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-
-    return $weekdays[(int) $dt->format('w')] . ' ' . $dt->format('j') . ' ' . $months[(int) $dt->format('n')];
-}
-
 function check_login(PDO $db, bool $redirect): ?array
 {
     if (isset($_SESSION['user_id'])) {
@@ -62,4 +49,27 @@ function sermon_audio_url(?string $file): string
     }
 
     return 'src/assets/uploads/audio/' . ltrim($file, '/');
+}
+
+function normalize_time_input(?string $time, string $default = '10:00'): string
+{
+    $time = trim((string) $time);
+
+    if ($time === '') {
+        return $default;
+    }
+
+    $matches = [];
+    if (!preg_match('/^(\d{2}):(\d{2})$/', $time, $matches)) {
+        return $default;
+    }
+
+    $hours = (int) $matches[1];
+    $minutes = (int) $matches[2];
+
+    if ($hours < 0 || $hours > 23 || $minutes < 0 || $minutes > 59) {
+        return $default;
+    }
+
+    return sprintf('%02d:%02d', $hours, $minutes);
 }

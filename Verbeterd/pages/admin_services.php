@@ -4,7 +4,7 @@ $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection = $db->getConnection();
 $user_data = check_login($connection, true);
 
-$pageStyles = ['src/css/admin.css', 'src/css/suppages.css'];
+$pageStyles = ['src/css/admin.css', 'src/css/forms.css'];
 $pageTitle = 'Diensten beheren';
 $pageTemplate = 'admin_services.php';
 $service = [
@@ -15,13 +15,16 @@ $service = [
     'elder' => '',
 ];
 $errors = [];
-$success = null;
+$success = $_SESSION['flash_success'] ?? null;
+unset($_SESSION['flash_success']);
 
 if (isset($_GET['id'])) {
     $queryDelete = $connection->prepare('DELETE FROM services WHERE id = :id');
     $queryDelete->bindValue('id', (int) $_GET['id'], PDO::PARAM_INT);
     if ($queryDelete->execute()) {
-        $success = 'De dienst is verwijderd.';
+        $_SESSION['flash_success'] = 'De dienst is verwijderd.';
+        header('Location: ' . BASE_PATH . 'admin_services');
+        exit;
     } else {
         $errors[] = 'Er is een fout opgetreden bij verwijderen.';
     }
@@ -38,9 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Kies een geldige datum.';
     }
 
-    if ($service['time'] === '') {
-        $errors[] = 'Vul een tijd in.';
-    }
+    $service['time'] = normalize_time_input($service['time'] ?? '10:00');
 
     if ($service['speaker'] === '') {
         $errors[] = 'Vul een spreker in.';
@@ -59,8 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $service['speaker'],
             $service['elder'],
         ]);
-        $success = 'Dienst succesvol opgeslagen.';
-        $service = ['date' => '', 'special_occasion' => '', 'time' => '', 'speaker' => '', 'elder' => ''];
+        $_SESSION['flash_success'] = 'Dienst succesvol opgeslagen.';
+        header('Location: ' . BASE_PATH . 'admin_services');
+        exit;
     }
 }
 

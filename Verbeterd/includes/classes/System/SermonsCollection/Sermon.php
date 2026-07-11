@@ -8,9 +8,23 @@ class Sermon
    public string $title = '';
    public string $file;
 
-   public static function getAll(\PDO $db): array
+   public static function getAll(\PDO $db, ?int $limit = null): array
    {
-        return $db->query("SELECT * FROM sermons ORDER BY date DESC")->fetchAll(\PDO::FETCH_ASSOC);
+        $query = 'SELECT * FROM sermons ORDER BY date DESC';
+
+          if ($limit !== null) {
+               $query .= ' LIMIT :limit';
+          }
+
+          $statement = $db->prepare($query);
+
+          if ($limit !== null) {
+               $statement->bindValue('limit', max(1, $limit), \PDO::PARAM_INT);
+          }
+
+          $statement->execute();
+
+          return $statement->fetchAll(\PDO::FETCH_ASSOC);
    }
 
    public function update(\PDO $db): bool

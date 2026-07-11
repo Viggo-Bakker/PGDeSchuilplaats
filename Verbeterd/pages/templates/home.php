@@ -14,34 +14,36 @@
       </div>
     </section>
 
-    <section id="services">
-      <h3>Aankomende Diensten</h3>
-      <div>
-        <?php
-        if (isset($soonServices) && count($soonServices) > 0): ?>
+    <section id="homepage-services" class="home-section" aria-labelledby="homepage-services-title">
+      <h3 id="homepage-services-title">Aankomende Diensten</h3>
+      <div class="home-card-list">
+        <?php if (isset($soonServices) && count($soonServices) > 0): ?>
           <?php foreach ($soonServices as $service): ?>
-            <div class="service">
-              <h4><?= htmlspecialchars(TimeFormatter::formatDutchDate($service['date'])) ?></h4>
+            <article class="service-card">
+              <header>
+                <h4><?= htmlspecialchars(TimeFormatter::formatDutchDate($service['date'])) ?></h4>
+              </header>
               <p><?= htmlspecialchars($service['special_occasion']) ?></p>
-              <p><?= htmlspecialchars(date("H:i", strtotime($service['time']))) ?> <span class="vertical-dashes"><?= htmlspecialchars($service['speaker']) ?></span> OvD: <?= htmlspecialchars($service['elder']) ?></p>
-            </div>
-        <?php endforeach;
-        endif;
-        ?>
+              <p><?= htmlspecialchars(date('H:i', strtotime($service['time']))) ?> <span class="vertical-dashes"><?= htmlspecialchars($service['speaker']) ?></span> OvD: <?= htmlspecialchars($service['elder']) ?></p>
+            </article>
+          <?php endforeach; ?>
+        <?php endif; ?>
       </div>
     </section>
 
-    <section id="sermons">
-      <h3>Recent Preken</h3>
-      <div>
+    <section id="homepage-sermons" class="home-section" aria-labelledby="homepage-sermons-title">
+      <h3 id="homepage-sermons-title">Recente Preken</h3>
+      <div class="home-card-list">
         <?php if (!empty($sermons)): ?>
           <?php foreach (array_slice($sermons, 0, 3) as $sermon): ?>
-            <div class="sermon">
-              <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($sermon['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermon['name']) ?></span> <?= htmlspecialchars($sermon['title']) ?></p>
-              <audio controls="" preload="metadata" name="media">
+            <article class="sermon-card">
+              <header>
+                <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($sermon['date'])) ?> <span class="vertical-dashes"><?= htmlspecialchars($sermon['name']) ?></span> <?= htmlspecialchars($sermon['title']) ?></p>
+              </header>
+              <audio controls preload="metadata" name="media">
                 <source src="<?= htmlspecialchars(sermon_audio_url($sermon['file'])) ?>" type="audio/mpeg">
               </audio>
-            </div>
+            </article>
           <?php endforeach; ?>
         <?php endif; ?>
       </div>

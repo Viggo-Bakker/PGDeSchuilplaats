@@ -1,6 +1,6 @@
 <?php
 
-$pageStyles = ['src/css/suppages.css'];
+$pageStyles = ['src/css/suppages.css', 'src/css/forms.css'];
 $pageTitle = 'Contact';
 $pageTemplate = 'contact.php';
 $success = null;

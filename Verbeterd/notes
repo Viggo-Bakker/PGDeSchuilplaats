@@ -1,3 +1,7 @@
-- formatdutchdate is dubbel (in helpers.php en TimeFormatter.php)
-- css is dubbel, zoals footer en main dingen die niet in admin en in styles hoeven
-- na aanpassen service weer naar overzicht 
+- uitgevoerd: service-upload gebruikt nu een veilige tijdnormalisatie met default `10:00` als de invoer leeg of ongeldig is.
+- uitgevoerd: `formatDutchDate` staat alleen nog in `TimeFormatter.php`; de helperdubbeling is verwijderd.
+- uitgevoerd: dubbele basis-CSS is teruggebracht; admin en sermons houden nu vooral pagina-specifieke regels over.
+- uitgevoerd: service/sermon updates en sermons-upload gaan via redirect + flash message terug naar het overzicht.
+- uitgevoerd: service- en sermonoverzichten gebruiken nu limiet-parameters zodat home en beheer dezelfde bron kunnen hergebruiken.
+- uitgevoerd: de session check draait nog steeds voor de paginacontent, terwijl de database alleen wordt geopend waar dat nodig is.
+- open voor later: als je wilt, kan ik de services/sermons-overzichten nog verder abstraheren in een herbruikbare view-component.

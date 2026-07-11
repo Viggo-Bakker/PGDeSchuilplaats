@@ -4,7 +4,7 @@ $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $connection = $db->getConnection();
 $user_data = check_login($connection, false);
 
-$pageStyles = ['src/css/sermons.css'];
+$pageStyles = ['src/css/sermons.css', 'src/css/suppages.css'];
 $pageTitle = 'Preken luisteren';
 
 $searchTerm = trim((string) ($_POST['search_sermon'] ?? $_GET['search_sermon'] ?? ''));

@@ -56,10 +56,10 @@
         <p id="user-greeting"><a href="login" class="login-button">Inloggen</a></p>
                               <?php endif; ?> -->
 
-      <!-- <form class="search-bar" method="POST" action="">
+      <form class="search-bar" method="POST" action="">
         <input type="text" id="search" name="search" placeholder="Zoek... (werkt nog niet)">
         <button type="submit">Zoek</button>
-      </form> -->
+      </form>
 
       <!-- RESULTATEN IN APARTE PAGINA (door google gehost) -->
 
@@ -73,8 +73,8 @@
       <div class="gcse-searchbox"></div> -->
 
       <!-- overlay -->
-      <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63"></script>
-      <div class="gcse-search"></div>
+      <!-- <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63"></script>
+      <div class="gcse-search"></div> -->
     </div>
 
     <button class="menu-toggle">☰</button>
