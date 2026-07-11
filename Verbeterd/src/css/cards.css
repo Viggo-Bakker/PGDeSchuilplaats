@@ -1,37 +1,51 @@
 /* Shared service/sermon card styling */
-.service-card,
+.service-card {
+    border-bottom: 4px dotted black;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .sermon-card {
-  background: #fff7e6;
-  border: 1px solid rgba(35, 52, 68, 0.12);
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+    background: #fff7e6;
+    border: 1px solid rgba(35, 52, 68, 0.12);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .service-card h3,
 .service-card h4,
 .sermon-card h3,
 .sermon-card h4 {
-  font-size: 1.35rem;
-  text-align: center;
+    font-size: 1.5rem;
+    /* text-align: center; */
 }
 
 .service-card p,
 .sermon-card p {
-  line-height: 1.6;
+    line-height: 1.6;
+    /* text-align: center; */
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    padding-left: 3.5vw;
 }
 
 .sermon-card {
-  align-items: center;
-  text-align: center;
+    align-items: center;
+    text-align: center;
 }
 
 .sermon-card audio {
-  width: min(100%, 720px);
-  height: 50px;
-  margin-top: 0.25rem;
+    width: min(100%, 720px);
+    height: 50px;
+    margin-top: 0.25rem;
 }

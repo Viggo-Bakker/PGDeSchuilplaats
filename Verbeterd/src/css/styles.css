@@ -38,9 +38,6 @@ h4 {
 }
 
 /* ------- HEADER -------- */
-header {
-  margin-top: 50px;
-}
 
 .hero {
   background: url('../assets/background-images/hero.jpg') 25%/cover no-repeat;

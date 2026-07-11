@@ -47,9 +47,12 @@
 
 .admin-card-actions {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 0.75rem;
     justify-content: center;
+    background: initial;
+    padding: 0;
 }
 
 .admin-card-actions a {
