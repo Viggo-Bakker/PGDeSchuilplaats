@@ -1,3 +1,3 @@
 <?php 
 
-$pageTitle = 'Pagina niet gevonden';
+$pageTitle = '404 error';

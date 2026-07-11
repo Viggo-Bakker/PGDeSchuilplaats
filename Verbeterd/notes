@@ -1,0 +1,3 @@
+- formatdutchdate is dubbel (in helpers.php en TimeFormatter.php)
+- css is dubbel, zoals footer en main dingen die niet in admin en in styles hoeven
+- na aanpassen service weer naar overzicht 

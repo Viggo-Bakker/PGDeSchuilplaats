@@ -1,32 +1,25 @@
-<?php 
+<?php
 
-//check session
-//komt nog
+$db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$connection = $db->getConnection();
+$user_data = check_login($connection, false);
 
-//set deafault empty sermon object & load post logic
-$sermon = new \System\SermonsCollection\Sermon();
-require_once __DIR__ . '/includes/sermon-post-data.php';
-$sermon->file = 'test.mp3'; //temp, remove later when file upload is implemented
+$pageStyles = ['src/css/sermons.css'];
+$pageTitle = 'Preken luisteren';
 
+$searchTerm = trim((string) ($_POST['search_sermon'] ?? $_GET['search_sermon'] ?? ''));
+$offset = isset($_GET['offset']) ? max(0, (int) $_GET['offset']) : 0;
 
-//database magic
-if(isset($formData) && empty($errors)) {
-    //store file
-    $file = new \System\Utils\File();
-    $sermon->file = $file->store($_FILES['audio']);
-
-    //init the database
-    $db = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-    //create sermon
-    if(\System\SermonsCollection\Sermon::create($sermon, $db->getConnection())) {
-        $success = "Preek succesvol opgeslagen!";
-        //override sermon object with empty values to clear form
-        $sermon = new \System\SermonsCollection\Sermon();
-    } else {
-        $errors[] = "Er is een fout opgetreden bij het opslaan van de preek.";
-    }
+if ($searchTerm !== '') {
+    $query = $connection->prepare('SELECT * FROM sermons WHERE name LIKE :search OR title LIKE :search ORDER BY date DESC');
+    $likeSearch = '%' . $searchTerm . '%';
+    $query->bindValue('search', $likeSearch);
+} else {
+    $query = $connection->prepare('SELECT * FROM sermons ORDER BY date DESC LIMIT 5 OFFSET :offset');
+    $query->bindValue('offset', $offset, PDO::PARAM_INT);
 }
 
+$query->execute();
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$pageTitle = "Preken opslaan";
+$pageTemplate = 'sermons.php';

@@ -34,18 +34,16 @@
     <section id="sermons">
       <h3>Recent Preken</h3>
       <div>
-        <?php
-        if (isset($sermons) && count($sermons) > 0): ?>
-          <?php for ($i = 0; $i < 3; $i++): ?>
+        <?php if (!empty($sermons)): ?>
+          <?php foreach (array_slice($sermons, 0, 3) as $sermon): ?>
             <div class="sermon">
-              <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($sermons[$i]['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermons[$i]['name']) ?></span> <?= htmlspecialchars($sermons[$i]['title']) ?></p>
+              <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($sermon['date'])) ?> <span class="vertical-dashes"> <?= htmlspecialchars($sermon['name']) ?></span> <?= htmlspecialchars($sermon['title']) ?></p>
               <audio controls="" preload="metadata" name="media">
-                <source src="src/assets/uploads/audio/<?= htmlspecialchars($sermons[$i]['file']) ?>" type="audio/mp3">
+                <source src="<?= htmlspecialchars(sermon_audio_url($sermon['file'])) ?>" type="audio/mpeg">
               </audio>
             </div>
-        <?php endfor;
-        endif;
-        ?>
+          <?php endforeach; ?>
+        <?php endif; ?>
       </div>
     </section>
 

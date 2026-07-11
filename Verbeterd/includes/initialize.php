@@ -1,29 +1,45 @@
-<?php 
+<?php
 
-require_once 'settings.php';
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/settings.php';
+require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-//Start session here
-//$session = new \System\Session\Session();
+session_start();
 
 $errors = [];
+$user_data = null;
 
 try {
-    //get the url from .htaccess rewrite & check existence (if not: 404!)
+    $sessionDb = new \System\Databases\Database(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $user_data = check_login($sessionDb->getConnection(), false);
+} catch (Throwable $e) {
+    $user_data = null;
+}
+
+try {
     $currentPage = (!isset($_GET['url']) || $_GET['url'] === '' ? 'home' : $_GET['url']);
     $phpFile = $currentPage . '.php';
-    if (!file_exists(INCLUDES_PATH . 'pages/' . $phpFile)) {
+    $pageFile = INCLUDES_PATH . 'pages/' . $phpFile;
+
+    if (!file_exists($pageFile)) {
         http_response_code(404);
         $phpFile = '404.php';
+        $pageFile = INCLUDES_PATH . 'pages/' . $phpFile;
     }
-    
-    require_once INCLUDES_PATH . 'pages/' . $phpFile;
 
-    //use output buffers to capture template data from require statement and tore in $content
+    require_once $pageFile;
+
+    $templateFile = $pageTemplate ?? $phpFile;
+    $templatePath = INCLUDES_PATH . 'pages/templates/' . $templateFile;
+
+    if (!file_exists($templatePath)) {
+        http_response_code(404);
+        $templatePath = INCLUDES_PATH . 'pages/templates/404.php';
+    }
+
     ob_start();
-    require_once INCLUDES_PATH . 'pages/templates/' . $phpFile;
+    require $templatePath;
     $content = ob_get_clean();
-
 } catch (Throwable $e) {
-    $errors[] = "Er is een fout opgetreden: " . $e->getMessage();
+    $errors[] = 'Er is een fout opgetreden: ' . $e->getMessage();
 }

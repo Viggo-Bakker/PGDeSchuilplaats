@@ -257,3 +257,121 @@ main {
         padding: 0 20px;
     }
 }
+
+.page-hero {
+    min-height: 45vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1c2f3a, #4f6d7a);
+    color: white;
+    text-align: center;
+}
+
+.page-hero .overlay {
+    width: 100%;
+    padding: 4rem 1.5rem;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.content-page {
+    width: min(1100px, 100% - 2rem);
+    margin: 0 auto;
+    padding: 3rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.content-block {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.content-block h2 {
+    margin-bottom: 0.75rem;
+}
+
+.content-body {
+    line-height: 1.7;
+}
+
+.content-body a {
+    color: #234;
+}
+
+.service-card,
+.team-card {
+    background: #fff7e6;
+    border: 1px solid rgba(35, 52, 68, 0.12);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.team-card img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+}
+
+.form-errors,
+.form-success {
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.form-errors {
+    background: #ffe1e1;
+    color: #8b0000;
+}
+
+.form-success {
+    background: #e0f8e7;
+    color: #14532d;
+}
+
+.content-page form,
+.admin-layout form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.content-page input,
+.content-page textarea,
+.admin-layout input,
+.admin-layout textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(35, 52, 68, 0.25);
+    border-radius: 12px;
+    font: inherit;
+}
+
+.content-page button,
+.admin-layout button {
+    width: fit-content;
+    padding: 0.85rem 1.1rem;
+    border: none;
+    border-radius: 999px;
+    background: #234;
+    color: white;
+    cursor: pointer;
+}
+
+.content-page button:hover,
+.admin-layout button:hover {
+    background: #456;
+}

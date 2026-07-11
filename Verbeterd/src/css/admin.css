@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +21,7 @@ h3 {
     font-family: 'Times New Roman', Times, serif;
     font-weight: normal;
 }
+
 
 
 /* ------- HEADER ------- */
@@ -130,4 +130,78 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+.admin-header {
+    margin-top: 110px;
+    text-align: center;
+}
+
+.admin-layout {
+    width: min(1100px, 100% - 2rem);
+    margin: 2rem auto 0;
+    display: grid;
+    gap: 2rem;
+}
+
+.admin-layout section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-errors,
+.form-success {
+    width: min(1100px, 100% - 2rem);
+    margin: 1rem auto 0;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+}
+
+.form-errors {
+    background: #ffe1e1;
+    color: #8b0000;
+}
+
+.form-success {
+    background: #e0f8e7;
+    color: #14532d;
+}
+
+.admin-layout .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.admin-layout input,
+.admin-layout textarea {
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(35, 52, 68, 0.25);
+    border-radius: 12px;
+    font: inherit;
+}
+
+.admin-layout button {
+    width: fit-content;
+    padding: 0.85rem 1.1rem;
+    border: none;
+    border-radius: 999px;
+    background: #234;
+    color: white;
+    cursor: pointer;
+}
+
+.admin-layout button:hover {
+    background: #456;
+}
+
+.service-card,
+.sermon {
+    background: #fff7e6;
+    border: 1px solid rgba(35, 52, 68, 0.12);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
 }

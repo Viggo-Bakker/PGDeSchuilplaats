@@ -30,10 +30,15 @@ h3 {
 }
 
 /* ------- HEADER -------- */
+header {
+  margin-top: 50px;
+}
+
 .hero {
   background: url('../assets/background-images/hero.jpg') 25%/cover no-repeat;
   height: 120vh;
   position: relative;
+  margin-top: -50px;
 }
 
 .overlay {
@@ -75,7 +80,6 @@ h3 {
 
 main {
   flex: 1;
-
 }
 
 .vertical-dashes {

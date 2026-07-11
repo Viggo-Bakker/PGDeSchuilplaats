@@ -23,3 +23,43 @@ section#login, section#signup {
     justify-content: space-around;
     gap: 10px;
 }
+
+#login input,
+#signup input {
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(35, 52, 68, 0.25);
+    border-radius: 12px;
+    font: inherit;
+}
+
+#login button,
+#signup button {
+    padding: 0.85rem 1.1rem;
+    border: none;
+    border-radius: 999px;
+    background: #234;
+    color: white;
+    cursor: pointer;
+}
+
+#login button:hover,
+#signup button:hover {
+    background: #456;
+}
+
+.form-errors,
+.form-success {
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.form-errors {
+    background: #ffe1e1;
+    color: #8b0000;
+}
+
+.form-success {
+    background: #e0f8e7;
+    color: #14532d;
+}

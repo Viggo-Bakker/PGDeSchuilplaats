@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<meta charset='UTF-8'>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel='stylesheet' href='src/css/menu.css'>
-
 <header>
   <nav id='menu'>
     <ul class='logo'>
@@ -17,50 +11,50 @@
       <?php if (isset($user_data['user_name'])): ?>
         <li><a class='dropdown-arrow' href=''>Admin</a>
           <ul class='sub-menus'>
-            <li><a href='admin_services.php'>- Diensten</a></li>
-            <li><a href='admin_sermons.php'>- Preken</a></li>
-            <li><a href="signup.php">- Registreren</a></li>
+            <li><a href='admin_services'>- Diensten</a></li>
+            <li><a href='admin_sermons'>- Preken beheren</a></li>
+            <li><a href='signup'>- Registreren</a></li>
           </ul>
         </li>
       <?php endif; ?>
-      <li><a class='dropdown-arrow' href='agenda.php'>Agenda</a>
+      <li><a class='dropdown-arrow' href='agenda'>Agenda</a>
         <ul class='sub-menus'>
-          <li><a href='services.php'>- Diensten</a></li>
-          <li><a href='alpha.php'>- Alpha</a></li>
-          <li><a href='huiskring.php'>- Kringen</a></li>
-          <li><a href='bidstond.php'>- Bidstond</a></li>
+          <li><a href='services'>- Diensten</a></li>
+          <li><a href='alpha'>- Alpha</a></li>
+          <li><a href='huiskring'>- Kringen</a></li>
+          <li><a href='bidstond'>- Bidstond</a></li>
         </ul>
       </li>
-      <li><a class='dropdown-arrow' href='about_us.php'>Over ons</a>
+      <li><a class='dropdown-arrow' href='about_us'>Over ons</a>
         <ul class='sub-menus'>
-          <li><a href='our_team.php'>- Stuurgroep</a></li>
-          <li><a href='history.php'>- Geschiedenis</a></li>
-          <li><a href='route.php'>- Route</a></li>
+          <li><a href='our_team'>- Stuurgroep</a></li>
+          <li><a href='history'>- Geschiedenis</a></li>
+          <li><a href='route'>- Route</a></li>
         </ul>
       </li>
-      <li><a class='dropdown-arrow' href='education.php'>Onderwijs</a>
+      <li><a class='dropdown-arrow' href='education'>Onderwijs</a>
         <ul class='sub-menus'>
-          <li><a href='<?= BASE_PATH . "sermons" ?>'>- Preken</a></li>
-          <li><a href='children.php'>- Kinderen</a></li>
-          <li><a href='teens.php'>- Tieners</a></li>
-          <li><a href='youth.php'>- Jeugd</a></li>
+          <li><a href='sermons'>- Preken luisteren</a></li>
+          <li><a href='children'>- Kinderen</a></li>
+          <li><a href='teens'>- Tieners</a></li>
+          <li><a href='youth'>- Jeugd</a></li>
         </ul>
       </li>
-      <li><a class='dropdown-arrow' href='contact.php'>Contact</a>
+      <li><a class='dropdown-arrow' href='contact'>Contact</a>
         <ul class='sub-menus'>
-          <li><a href='privacy_statement.php'>- Privacy statement</a></li>
-          <li><a href='protocols.php'>- Protocollen</a></li>
-          <li><a href='anbi.php'>- ANBI</a></li>
+          <li><a href='privacy_statement'>- Privacy statement</a></li>
+          <li><a href='protocols'>- Protocollen</a></li>
+          <li><a href='anbi'>- ANBI</a></li>
         </ul>
       </li>
-      <li><a href='donate.php'>Doneren</a></li>
+      <li><a href='donate'>Doneren</a></li>
     </ul>
     <div id="right">
-      <?php if (isset($user_data['user_name'])): ?>
-        <p id="user-greeting"> Ingelogd als; <?php echo $user_data['user_name']; ?>! <a href="logout.php">Uitloggen</a></p>
-      <?php else: ?>
-        <p id="user-greeting"><a href="login.php" class="login-button">Inloggen</a></p>
-      <?php endif; ?>
+                              <!-- <?php if (isset($user_data['user_name'])): ?>
+        <p id="user-greeting">Ingelogd als <?php echo htmlspecialchars($user_data['user_name'], ENT_QUOTES, 'UTF-8'); ?>. <a href="logout">Uitloggen</a></p>
+                              <?php else: ?>
+        <p id="user-greeting"><a href="login" class="login-button">Inloggen</a></p>
+                              <?php endif; ?> -->
 
       <!-- <form class="search-bar" method="POST" action="">
         <input type="text" id="search" name="search" placeholder="Zoek... (werkt nog niet)">
@@ -79,8 +73,7 @@
       <div class="gcse-searchbox"></div> -->
 
       <!-- overlay -->
-      <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63">
-      </script>
+      <script async src="https://cse.google.com/cse.js?cx=d0640339ea3834a63"></script>
       <div class="gcse-search"></div>
     </div>
 
@@ -110,11 +103,11 @@
 
 
     (function() {
-      const INTERVAL_MS = 30 * 60 * 1000; // 30 minuten
+      const INTERVAL_MS = 30 * 60 * 1000;
 
-      async function keepAlive() {    //werkt nog niet vgm
+      async function keepAlive() {
         try {
-          await fetch('/WebsitePGDeSchuilplaats/PGDeSchuilplaatsNew/keepalive.php', {
+          await fetch('<?= BASE_PATH ?>keepalive.php', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -138,5 +131,3 @@
     })();
   </script>
 </header>
-
-</html>
