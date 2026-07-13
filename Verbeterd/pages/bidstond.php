@@ -5,6 +5,7 @@ $pageTitle = 'Bidstond';
 $pageTemplate = 'static.php';
 $pageHeroTitle = 'Bidstond';
 $pageHeroText = 'Een moment van gezamenlijk gebed en voorbede.';
+$pageHeroBackground = 'bible.jpg';
 $pageSections = [
     [
         'title' => 'Samen bidden',

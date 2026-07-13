@@ -7,6 +7,7 @@ $user_data = check_login($connection, false);
 $pageStyles = ['src/css/services.css', 'src/css/suppages.css'];
 $pageTitle = 'Diensten';
 $pageTemplate = 'services.php';
+$pageHeroBackground = 'samenkomst.jpg';
 
 $searchTerm = trim((string) ($_POST['search_service'] ?? $_GET['search_service'] ?? ''));
 

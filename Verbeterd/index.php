@@ -18,14 +18,21 @@
       <link rel="stylesheet" href="<?= htmlspecialchars($style, ENT_QUOTES, 'UTF-8') ?>">
     <?php endforeach; ?>
   <?php endif; ?>
+  <script src="src/js/main.js"></script>
 </head>
 
 <body>
-  <?php include 'includes/menu.php'; 
-  
+  <?php include 'includes/menu.php';
+
   echo $content ?? '';
-  
-  include 'includes/footer.php'; ?>
+
+  include 'includes/footer.php';
+
+  if (!empty($pageHeroBackground)): ?>
+    <script>
+      setBackground("<?php echo $pageHeroBackground; ?>")
+    </script>
+  <?php endif; ?>
 </body>
 
 </html>

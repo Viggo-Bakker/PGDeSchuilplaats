@@ -5,6 +5,7 @@ $pageTitle = 'Alpha';
 $pageTemplate = 'static.php';
 $pageHeroTitle = 'Alpha cursus';
 $pageHeroText = 'Een laagdrempelige manier om geloof en vragen samen te verkennen.';
+$pageHeroBackground = 'alpha.jpg';
 $pageSections = [
     [
         'title' => 'Voor wie?',

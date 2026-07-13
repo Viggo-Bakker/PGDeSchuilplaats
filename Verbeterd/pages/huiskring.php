@@ -5,6 +5,7 @@ $pageTitle = 'Huiskringen';
 $pageTemplate = 'static.php';
 $pageHeroTitle = 'Huiskringen';
 $pageHeroText = 'Kleine groepen voor ontmoeting, gesprek en gebed.';
+$pageHeroBackground = 'huiskring.jpg';
 $pageSections = [
     [
         'title' => 'Samen in een kring',
