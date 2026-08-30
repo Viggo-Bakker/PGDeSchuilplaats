@@ -56,8 +56,8 @@
         <p id="user-greeting"><a href="login" class="login-button">Inloggen</a></p>
                               <?php endif; ?> -->
 
-      <form class="search-bar" method="POST" action="">
-        <input type="text" id="search" name="search" placeholder="Zoek... (werkt nog niet)">
+      <form class="search-bar" method="GET" action="search">
+        <input type="text" id="search" name="q" placeholder="Zoek...">
         <button type="submit">Zoek</button>
       </form>
 

@@ -20,9 +20,9 @@
         <?php endif; ?>
 
         <form method="post">
-            <input type="text" name="name" placeholder="Naam" required value="<?= htmlspecialchars($form['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-            <input type="email" name="email" placeholder="E-mailadres" required value="<?= htmlspecialchars($form['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
-            <textarea name="message" rows="6" placeholder="Bericht" required><?= htmlspecialchars($form['message'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+            <input type="text" name="name" placeholder="Naam" value="<?= htmlspecialchars($form['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+            <input type="email" name="email" placeholder="E-mailadres" value="<?= htmlspecialchars($form['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+            <textarea name="message" rows="6" placeholder="Bericht"><?= htmlspecialchars($form['message'] ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
             <button type="submit">Verstuur</button>
         </form>
     </section>

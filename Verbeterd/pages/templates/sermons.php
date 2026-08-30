@@ -10,9 +10,9 @@
     <section class="content-block sermon-overview__toolbar" aria-label="Zoek preken">
         <h2>Recente preken</h2>
 
-        <form class="search-bar" method="post" action="">
+        <form class="search-bar" method="GET" action="">
             <label class="sr-only" for="sermon-search">Zoek op spreker of titel</label>
-            <input type="text" id="sermon-search" name="search_sermon" placeholder="Zoek op spreker of titel" value="<?= htmlspecialchars($searchTerm ?? '', ENT_QUOTES, 'UTF-8') ?>">
+            <input type="text" id="sermon-search" name="q" placeholder="Zoek op spreker of titel" value="<?= htmlspecialchars($searchTerm ?? '', ENT_QUOTES, 'UTF-8') ?>">
             <button type="submit">Zoek</button>
         </form>
     </section>
@@ -24,7 +24,7 @@
                 <?php foreach ($result as $row): ?>
                     <article class="sermon-card" role="listitem">
                         <header class="sermon-card__meta">
-                            <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($row['date'])) ?> <span class="vertical-dashes" aria-hidden="true">|</span> <?= htmlspecialchars($row['name']) ?> <span class="vertical-dashes" aria-hidden="true">|</span> <?= htmlspecialchars($row['title']) ?></p>
+                            <p><?= htmlspecialchars(TimeFormatter::formatDutchDate($row['date'])) ?> <span class="vertical-dashes"><?= htmlspecialchars($row['name']) ?></span> <?= htmlspecialchars($row['title']) ?></p>
                         </header>
                         <audio controls preload="metadata" name="media">
                             <source src="<?= htmlspecialchars(sermon_audio_url($row['file'])) ?>" type="audio/mpeg">

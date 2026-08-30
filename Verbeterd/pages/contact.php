@@ -30,14 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errors)) {
-        $to = 'info@deschuilplaats.nl';
+        // $to = 'info@deschuilplaats.nl';
+        $to = 'joahmqkh@gmail.com';
         $subject = 'Contactbericht via de website';
         $body = "Naam: {$form['name']}\nE-mail: {$form['email']}\n\n{$form['message']}";
         $headers = 'From: ' . $form['email'];
-
+        // print_r($body);
         if (@mail($to, $subject, $body, $headers)) {
             $success = 'Je bericht is verzonden.';
             $form = ['name' => '', 'email' => '', 'message' => ''];
+            // print_r($success);
         } else {
             $errors[] = 'Het bericht kon niet worden verzonden.';
         }
